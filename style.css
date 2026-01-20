@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "Poppins",Arial, sans-serif;
 }
 
 body {
@@ -453,20 +453,23 @@ body {
 }
 
 /* Filters */
+/* ================= Category Filters ================= */
 .category-filters {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 40px;
+    gap: 10px;
+    margin-bottom: 32px;
+    /* reduced */
 }
 
 .category-btn {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 999px;
     border: 1px solid #e5e7eb;
     background: #ffffff;
     cursor: pointer;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -476,27 +479,29 @@ body {
     border-color: #2563eb;
 }
 
-/* Grid */
+/* ================= Grid ================= */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 20px;
+    /* tighter spacing */
 }
 
-/* Card */
+/* ================= Card ================= */
 .product-card {
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: 14px;
+    /* slightly smaller */
     overflow: hidden;
     border: 1px solid #e5e7eb;
-    transition: 0.3s;
+    transition: 0.25s ease;
 }
 
 .product-card:hover {
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* Image */
+/* ================= Image ================= */
 .product-image {
     position: relative;
     aspect-ratio: 1 / 1;
@@ -508,67 +513,88 @@ body {
     object-fit: cover;
 }
 
+/* Category Tag (bottom-left) */
 .product-tag {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    background: #2563eb;
-    color: #ffffff;
-    font-size: 12px;
+    bottom: 10px;
+    left: 10px;
+    background: #ffffff;
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 500;
     padding: 4px 10px;
     border-radius: 999px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Info */
+/* Price Badge (bottom-right) */
+.product-price {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #ffffff;
+    color: #111827;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= Info ================= */
 .product-info {
-    padding: 16px;
+    padding: 14px;
+    margin-top: 10px;
+    /* reduced padding */
 }
 
-.product-info h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
+/* Product Name */
+.product-name {
+    font-size: 19px;
+    /* slightly reduced */
+    font-weight: 700;
+    
+    color: #111827;
+    margin-bottom: 10px;
 }
 
-/* Rating */
-.rating {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-bottom: 12px;
-}
-
-.rating i {
-    width: 16px;
-    height: 16px;
-    color: #facc15;
-}
-
-/* Price */
-.price-row {
+/* ================= Stock + Button ================= */
+.stock-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.price {
-    font-size: 20px;
-    font-weight: 700;
+/* Stock Badge */
+.stock-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #2563eb;
+    background: #eff6ff;
+    border: 1px solid #2563eb;
+    border-radius: 999px;
 }
 
-/* Button */
+/* ================= Button ================= */
 .add-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    padding: 7px 14px;
+    /* compact */
+    font-size: 13px;
+    font-weight: 500;
     background: #2563eb;
     color: #ffffff;
     border: none;
-    padding: 8px 14px;
     border-radius: 8px;
     cursor: pointer;
 }
 
-/* Responsive */
+.add-btn:hover {
+    background: #1e40af;
+}
+
+/* ================= Responsive ================= */
 @media (max-width: 1024px) {
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -604,6 +630,7 @@ body {
     display: flex;
     align-items: center;
 }
+
 .logo-footer-ShopEase {
     height: 150px;
 }

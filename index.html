@@ -7,6 +7,8 @@
     <title>Mini E-Commerce</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -85,7 +87,7 @@
                         </div>
                         <div class="stat">
                             <h3>4.9★</h3>
-                            <p>Rating</p>
+                            <p>stock</p>
                         </div>
                     </div>
                 </div>
@@ -174,80 +176,7 @@
 
     <!-- ================= PRODUCTS ================= -->
     <section class="products">
-        <div class="products-container">
-
-            <!-- Header -->
-            <div class="products-header">
-                <h2>Featured Products</h2>
-                <p>Discover our handpicked selection of premium products</p>
-            </div>
-
-            <!-- Category Filters -->
-            <div class="category-filters">
-                <button class="category-btn active">All</button>
-                <button class="category-btn">Clothing</button>
-                <button class="category-btn">Electronics</button>
-                <button class="category-btn">Stationary</button>
-                <button class="category-btn">Home</button>
-                <button class="category-btn">Sports</button>
-                <button class="category-btn">Beauty</button>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="products-grid">
-
-                <!-- Product Card -->
-                <div class="product-card" data-category="Clothing">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1630948688037-aa88dc433a57" alt="Product">
-                        <span class="product-tag">Clothing</span>
-                    </div>
-
-                    <div class="product-info">
-                        <h3>Premium Cotton T-Shirt</h3>
-
-                        <div class="rating">
-                            <i data-lucide="star"></i>
-                            <span>4.5</span>
-                        </div>
-
-                        <div class="price-row">
-                            <span class="price">$29.99</span>
-                            <button class="add-btn">
-                                <i data-lucide="shopping-cart"></i>
-                                Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Duplicate product cards for practice -->
-                <div class="product-card" data-category="Electronics">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1717996563514-e3519f9ef9f7" alt="Product">
-                        <span class="product-tag">Electronics</span>
-                    </div>
-
-                    <div class="product-info">
-                        <h3>Wireless Headphones</h3>
-
-                        <div class="rating">
-                            <i data-lucide="star"></i>
-                            <span>4.8</span>
-                        </div>
-
-                        <div class="price-row">
-                            <span class="price">$149.99</span>
-                            <button class="add-btn">
-                                <i data-lucide="shopping-cart"></i>
-                                Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+        <div class="products-container" id="productsContainer">
         </div>
     </section>
 
@@ -351,8 +280,7 @@
     <script>
         lucide.createIcons();
     </script>
-
-
+    <script src="app.js"></script>
 </body>
 
 </html>
