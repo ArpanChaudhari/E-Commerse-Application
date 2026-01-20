@@ -388,10 +388,25 @@ function renderCategory() {
     });
     productsContainer.appendChild(categoryDiv); // append categoryDiv inside productsContainer
 }
+renderProductHeader();
+renderCategory();
+
+
+//======== to not UI duplicate==========
+const productsGrid = document.createElement("div");
+productsGrid.className = "products-grid";
+productsContainer.appendChild(productsGrid);
 
 function renderProduct(productList) {
-    const grid = document.createElement("div");
-    grid.className = "products-grid";
+
+    // const grid = document.createElement("div");//this create every time grid div when call
+    // grid.className = "products-grid";
+
+    productsGrid.innerHTML = "";//this very important
+    /*Every time filter:-
+    New card are added
+    old card remain
+    UI duplicates */
 
     productList.forEach(product => {
         const card = document.createElement("div");
@@ -415,10 +430,46 @@ function renderProduct(productList) {
         </div>
         </div>
         `;
-        grid.appendChild(card);
+        productsGrid.appendChild(card);
     });
-    productsContainer.appendChild(grid);
 };
-renderProductHeader();
-renderCategory();
+
+function setupCategoryFilter() {
+    const categoryButtons = document.querySelectorAll(".category-btn");// querySelecterAll give a list
+    
+    // loops over all  button
+    categoryButtons.forEach(button => { 
+
+        //add event on button
+        button.addEventListener('click', () => {  
+
+            // loops over all button to stop active state
+            categoryButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            //start active state on current button
+            button.classList.add('active');
+
+            // select button name to check condition
+            const selectCategory = button.textContent;
+
+            // check if all--> render=>render(products)
+            if (selectCategory === "All") {
+                renderProduct(products);
+            } 
+            //else applied filter
+            else {
+
+                // filter reduce array by condition 
+                const filteredProducts = products.filter(product => product.category === selectCategory);
+
+                //render with filter array
+                renderProduct(filteredProducts);
+            }
+        });
+    });
+}
 renderProduct(products);
+setupCategoryFilter();
+
