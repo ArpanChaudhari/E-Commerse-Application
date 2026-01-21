@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins",Arial, sans-serif;
+    font-family: "Poppins", Arial, sans-serif;
 }
 
 body {
@@ -553,7 +553,7 @@ body {
     font-size: 19px;
     /* slightly reduced */
     font-weight: 700;
-    
+
     color: #111827;
     margin-bottom: 10px;
 }
@@ -576,6 +576,14 @@ body {
     border: 1px solid #2563eb;
     border-radius: 999px;
 }
+.stock-badge-out {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: red;
+}
+
 
 /* ================= Button ================= */
 .add-btn {
@@ -588,6 +596,11 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.add-btn[disabled] {
+    opacity: .55;
+    cursor: not-allowed;
 }
 
 .add-btn:hover {

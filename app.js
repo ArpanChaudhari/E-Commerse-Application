@@ -398,50 +398,75 @@ productsGrid.className = "products-grid";
 productsContainer.appendChild(productsGrid);
 
 function renderProduct(productList) {
-
-    // const grid = document.createElement("div");//this create every time grid div when call
-    // grid.className = "products-grid";
-
-    productsGrid.innerHTML = "";//this very important
-    /*Every time filter:-
-    New card are added
-    old card remain
-    UI duplicates */
+    // Clear old product cards before rendering new ones
+    productsGrid.innerHTML = "";
 
     productList.forEach(product => {
         const card = document.createElement("div");
         card.className = "product-card";
 
-        card.innerHTML = `
-        <div class="product-image">
-        <img src="${product.image}" alt="${product.name}">
-        <span class="product-tag">${product.category}</span>
-        <span class="product-price">$${product.price}</span>
-        </div>
+        // ---------- Stock text & class logic ----------
+        const stockText =
+            product.stock === 0
+                ? "Out of stock"
+                : `In Stock: ${product.stock}`;
 
-        <div class="product-info">
-        <h3 class="product-name">${product.name}</h3>
-        <div class="stock-row">
-        <span class="stock-badge">In Stock: ${product.stock}</span>
-        <button class="add-btn">
-        <i data-lucide="shopping-cart"></i>
-        Add to cart
-        </button>
-        </div>
-        </div>
+        const stockClass =
+            product.stock === 0
+                ? "stock-badge-out"
+                : "stock-badge";
+
+        // ---------- Card HTML ----------
+        card.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}">
+                <span class="product-tag">${product.category}</span>
+                <span class="product-price">$${product.price}</span>
+            </div>
+
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+
+                <div class="stock-row">
+                    <span class="${stockClass}">${stockText}</span>
+
+                    <button 
+                        class="add-btn" 
+                        data-id="${product.id}"
+                        ${product.stock === 0 ? "disabled" : ""}
+                    >
+                        Add to cart
+                    </button>
+                </div>
+            </div>
         `;
+
+        // ---------- Add to Cart Button Logic ----------
+        const addToCartButton = card.querySelector(".add-btn");
+
+        addToCartButton.addEventListener("click", () => {
+            handleAddToCart(product.id);
+        });
+
+        /* If click logic was added outside:
+        Old listeners are gone
+        New buttons have no listeners
+        That’s why event logic must be re-attached every render */
+
+        // ---------- Append card to grid ----------
         productsGrid.appendChild(card);
     });
-};
+}
+
 
 function setupCategoryFilter() {
     const categoryButtons = document.querySelectorAll(".category-btn");// querySelecterAll give a list
-    
+
     // loops over all  button
-    categoryButtons.forEach(button => { 
+    categoryButtons.forEach(button => {
 
         //add event on button
-        button.addEventListener('click', () => {  
+        button.addEventListener('click', () => {
 
             // loops over all button to stop active state
             categoryButtons.forEach(button => {
@@ -457,7 +482,7 @@ function setupCategoryFilter() {
             // check if all--> render=>render(products)
             if (selectCategory === "All") {
                 renderProduct(products);
-            } 
+            }
             //else applied filter
             else {
 
@@ -473,3 +498,28 @@ function setupCategoryFilter() {
 renderProduct(products);
 setupCategoryFilter();
 
+
+
+//Update Cart count
+const cartCountSpan = document.getElementById('cartCountBadge');
+
+// intialize the cart counter
+let cartItemCount = 0;
+
+//function to update the cart count in header
+function updateCartCount() {
+    cartCountSpan.textContent = cartItemCount;
+}
+
+//function handle add to cart button click
+function handleAddToCart(productId){
+
+    const product=products.find(p=> p.id=== productId);
+
+    product.stock-=1;
+    cartItemCount+=1;
+
+    updateCartCount();
+    renderProduct(products);
+}
+updateCartCount();
