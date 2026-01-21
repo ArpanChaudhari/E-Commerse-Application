@@ -1,4 +1,4 @@
-
+let cart = [];
 
 //============ Section Heading ================
 const productSectionInfo = {
@@ -512,14 +512,111 @@ function updateCartCount() {
 }
 
 //function handle add to cart button click
-function handleAddToCart(productId){
+function handleAddToCart(productId) {
 
-    const product=products.find(p=> p.id=== productId);
+    const product = products.find(p => p.id === productId);
+    const cartItem = cart.find(item => item.id === productId);
 
-    product.stock-=1;
-    cartItemCount+=1;
+    if (cartItem) {
+        cartItem.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            category: product.category,
+            image: product.image,
+            quantity: 1
+        });
+    }
+
+    product.stock -= 1;
+    cartItemCount += 1;
 
     updateCartCount();
     renderProduct(products);
+    renderCart();
 }
 updateCartCount();
+
+const cartItemContainer = document.getElementById('cartItems');
+const cartEmptyState = document.getElementById('cartEmpty');
+const cartHeaderSubTitle = document.getElementById('cartSubtitle');
+const totalAmount = document.getElementById('totalAmount');
+
+function checkCartState() {
+    if (cart.length === 0) {
+        cartEmptyState.hidden = false;
+        cartItemContainer.innerHTML = "";
+        cartHeaderSubTitle.textContent = "0 items";
+        totalAmount.textContent = "$0.00";
+        return false;
+    } else {
+        cartEmptyState.hidden = true;
+        return true;
+    }
+}
+
+
+function renderCart() {
+    cartItemContainer.innerHTML = "";
+    if(!checkCartState()) return;
+    let total = 0;
+    let totalItem = 0;
+    cart.forEach(item => {
+        const itemTotalPrice = item.price * item.quantity;
+        total += itemTotalPrice;
+        totalItem += item.quantity;
+
+
+        const cartItemDiv = document.createElement("div");
+        cartItemDiv.className = "cart-item";
+        ///now setup cartitemdiv
+        cartItemDiv.innerHTML = `
+        <div class="cart-item-grid">
+        <div class="cart-item-image">
+        <img src="${item.image}" alt="${item.name}">
+        </div>
+        <div class="cart-item-content">
+        <div class="cart-item-content-rowOne">
+        <div class="cart-item-content-rowOne-left">
+        <h3 class="cart-item-name">${item.name}</h3>
+        <span class="cart-item-category">${item.category}</span>
+        </div>
+        <div class="cart-item-content-rowOne-right">
+        <button class="cart-item-remove" id="cartItemRemove">Remove</button>
+        </div>
+        </div>
+        <div class="cart-item-content-rowTwo">
+        <div class="cart-item-content-rowTwo-left">
+        <button class="cart-item-Plus" id="cartItemRemove">+</button>
+        <span class="cart-item-totalItem">${item.quantity}</span>
+        <button class="cart-item-Minus" id="cartItemRemove">-</button>
+        </div>
+        <div class="cart-item-content-rowTwo-right">
+        <span class="cart-item-totalPrice">${itemTotalPrice.toFixed(2)}</span>
+        <div>
+        </div>
+        </div>
+        </div>
+        `;
+        cartItemContainer.appendChild(cartItemDiv);
+    });
+    cartHeaderSubTitle.textContent = `${totalItem} items`;
+    totalAmount.textContent = `$${total.toFixed(2)}`;
+}
+
+const cartBtn = document.getElementById("opencartBtn");
+const cartDrawer = document.querySelector(".drawer-panel");
+const closeCartBtn = document.getElementById('closeBtn');
+
+if (cartBtn && cartDrawer && closeCartBtn) {
+    cartBtn.addEventListener("click", () => {
+        cartDrawer.classList.add("open");
+    });
+
+    closeCartBtn.addEventListener("click", () => {
+        cartDrawer.classList.remove("open");
+    });
+}
+

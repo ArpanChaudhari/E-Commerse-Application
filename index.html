@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
 </head>
 
 <body>
@@ -273,6 +273,35 @@
 
         </div>
     </footer>
+
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Shopping cart">
+        <div class="drawer-header">
+            <div>
+                <div class="drawer-title">Your Cart</div>
+                <div class="drawer-subtitle" id="cartSubtitle">0 items</div>
+            </div>
+            <button class="icon-btn" id="closeBtn" type="button" data-action="close-cart">✕</button>
+        </div>
+
+        <div class="drawer-body">
+            <div id="cartItems" class="cart-items"></div>
+
+            <div id="cartEmpty" class="empty-state" hidden>
+                <div class="empty-title">Your cart is empty</div>
+                <div class="empty-subtitle">
+                    Add something you like from the product list.
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer-footer">
+            <div class="totals">
+                <span>Total</span>
+                <strong id="totalAmount">$0.00</strong>
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- Icon Script -->
