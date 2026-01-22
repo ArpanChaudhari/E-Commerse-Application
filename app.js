@@ -1,13 +1,20 @@
+//-------------------------------
+//====== Cart State-> Cart array holds selected products ======
+//-------------------------------
 let cart = [];
 
-//============ Section Heading ================
+//-------------------------------
+//====== Section Heading ======
+//-------------------------------
 const productSectionInfo = {
     title: "Featured Products",
     tagline: "Discover our handpicked selection of premium products"
 };
 
 
-//=========== Category Button ================
+//-------------------------------
+//====== Category Button ======
+//-------------------------------
 const categories = [
     "All",
     "Clothing",
@@ -18,7 +25,9 @@ const categories = [
 ];
 
 
-//=========== Product Data ===============
+//-------------------------------
+//====== Product Data ======
+//-------------------------------
 const products = [
     // Clothing - 8 products
     {
@@ -352,11 +361,15 @@ const products = [
 ];
 
 
-//============= first select product container ================
+//-------------------------------
+//====== first select product container ======
+//-------------------------------
 const productsContainer = document.getElementById('productsContainer');
 
 
-//====== Render Section header ===========
+//-------------------------------
+//====== Render Section header ======
+//-------------------------------
 function renderProductHeader() {
     const headerDiv = document.createElement("div"); //--> Create div for header content
     headerDiv.className = "products-header"; //--> set class name
@@ -370,6 +383,9 @@ function renderProductHeader() {
     productsContainer.appendChild(headerDiv);//append headerDiv content inside productContainer
 }
 
+//-------------------------------
+//====== Render Category ======
+//-------------------------------
 function renderCategory() {
     const categoryDiv = document.createElement("div"); //create div for category button
     categoryDiv.className = "category-filters"; //--> set class name
@@ -392,12 +408,19 @@ renderProductHeader();
 renderCategory();
 
 
-//======== to not UI duplicate==========
+//-------------------------------
+//====== to not UI duplicate ======
+//-------------------------------
 const productsGrid = document.createElement("div");
 productsGrid.className = "products-grid";
 productsContainer.appendChild(productsGrid);
 
+
+//-------------------------------
+//====== Render Product ->Dynamic UI → recreated every time stock changes ======
+//-------------------------------
 function renderProduct(productList) {
+
     // Clear old product cards before rendering new ones
     productsGrid.innerHTML = "";
 
@@ -447,11 +470,11 @@ function renderProduct(productList) {
         addToCartButton.addEventListener("click", () => {
             handleAddToCart(product.id);
         });
-
-        /* If click logic was added outside:
-        Old listeners are gone
-        New buttons have no listeners
-        That’s why event logic must be re-attached every render */
+        /*
+         WHY listener is here:
+         Product cards are recreated every render.
+         Buttons do not exist before renderProduct().
+        */
 
         // ---------- Append card to grid ----------
         productsGrid.appendChild(card);
@@ -459,6 +482,9 @@ function renderProduct(productList) {
 }
 
 
+//-------------------------------
+// CATEGORY FILTER LOGIC -> Buttons are static → listener once
+//-------------------------------
 function setupCategoryFilter() {
     const categoryButtons = document.querySelectorAll(".category-btn");// querySelecterAll give a list
 
@@ -495,26 +521,27 @@ function setupCategoryFilter() {
         });
     });
 }
-renderProduct(products);
+renderProduct(products);  // To Change content when category button select
 setupCategoryFilter();
 
 
-
-//Update Cart count
+//-------------------------------
+//====== CART COUNT (HEADER) ======
+//-------------------------------
 const cartCountSpan = document.getElementById('cartCountBadge');
-
-// intialize the cart counter
-let cartItemCount = 0;
-
-//function to update the cart count in header
+let cartItemCount = 0; // intialize the cart counter
 function updateCartCount() {
     cartCountSpan.textContent = cartItemCount;
 }
+updateCartCount();
 
-//function handle add to cart button click
+
+//-------------------------------
+//====== Add To Cart Logic ->Updates: cart array, product stock, cart count ======
+//-------------------------------
 function handleAddToCart(productId) {
 
-    const product = products.find(p => p.id === productId);
+    const product = products.find(p => p.id === productId); // select perticular product
     const cartItem = cart.find(item => item.id === productId);
 
     if (cartItem) {
@@ -531,19 +558,33 @@ function handleAddToCart(productId) {
     }
 
     product.stock -= 1;
-    cartItemCount += 1;
+    recalculateCartCount();
 
     updateCartCount();
-    renderProduct(products);
-    renderCart();
+    renderProduct(products); // Update stock badge
+    renderCart(); //update cart UI
 }
-updateCartCount();
+//-------------------------------
+// Recalculate cart count from cart array
+//-------------------------------
+function recalculateCartCount() {
+    cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    updateCartCount();
+}
 
+
+//-------------------------------
+//CART UI REFERENCES (STATIC)
+//-------------------------------
 const cartItemContainer = document.getElementById('cartItems');
 const cartEmptyState = document.getElementById('cartEmpty');
 const cartHeaderSubTitle = document.getElementById('cartSubtitle');
 const totalAmount = document.getElementById('totalAmount');
 
+
+//-------------------------------
+//====== CHECK CART EMPTY STATE ======
+//-------------------------------
 function checkCartState() {
     if (cart.length === 0) {
         cartEmptyState.hidden = false;
@@ -557,13 +598,18 @@ function checkCartState() {
     }
 }
 
-
+//-------------------------------
+//====== RENDER CART ======
+//-------------------------------
 function renderCart() {
-    cartItemContainer.innerHTML = "";
-    if(!checkCartState()) return;
+
+    cartItemContainer.innerHTML = ""; //prevent form duplicate
+    if (!checkCartState()) return;
     let total = 0;
     let totalItem = 0;
     cart.forEach(item => {
+
+        const product = products.find(p => p.id === item.id);
         const itemTotalPrice = item.price * item.quantity;
         total += itemTotalPrice;
         totalItem += item.quantity;
@@ -581,31 +627,70 @@ function renderCart() {
         <div class="cart-item-content-rowOne">
         <div class="cart-item-content-rowOne-left">
         <h3 class="cart-item-name">${item.name}</h3>
-        <span class="cart-item-category">${item.category}</span>
+        <span class="cart-item-category">${item.category} - ₹${item.price}</span>
         </div>
         <div class="cart-item-content-rowOne-right">
-        <button class="cart-item-remove" id="cartItemRemove">Remove</button>
+        <button class="cart-item-remove" id="remove">Remove</button>
         </div>
         </div>
         <div class="cart-item-content-rowTwo">
         <div class="cart-item-content-rowTwo-left">
-        <button class="cart-item-Plus" id="cartItemRemove">+</button>
+        <button class="cart-item-Plus" id="plus">+</button>
         <span class="cart-item-totalItem">${item.quantity}</span>
-        <button class="cart-item-Minus" id="cartItemRemove">-</button>
+        <button class="cart-item-Minus" id="minus">-</button>
         </div>
         <div class="cart-item-content-rowTwo-right">
-        <span class="cart-item-totalPrice">${itemTotalPrice.toFixed(2)}</span>
+        <span class="cart-item-totalPrice">₹${itemTotalPrice.toFixed(2)}</span>
         <div>
         </div>
         </div>
         </div>
         `;
+
+        //-------------------------------
+        // Cart +, -, remov logic ->created dynamically->Event listeners inside loop
+        //-------------------------------
+        const itemAdd = cartItemDiv.querySelector('.cart-item-Plus');
+        const itemMinus = cartItemDiv.querySelector('.cart-item-Minus');
+        const itemRemove = cartItemDiv.querySelector('.cart-item-remove');
+
+        itemAdd.addEventListener('click', () => {
+            if (product.stock === 0) return;
+            item.quantity += 1;
+            product.stock -= 1;
+            recalculateCartCount();
+            renderProduct(products);
+            renderCart();
+        });
+        itemMinus.addEventListener('click', () => {
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+                product.stock += 1;
+            } else {
+                product.stock += 1;
+                cart = cart.filter((ci) => ci.id !== item.id);
+            }
+            recalculateCartCount();
+            renderProduct(products);
+            renderCart();
+        });
+        itemRemove.addEventListener('click', () => {
+            product.stock += item.quantity;
+            cart = cart.filter((ci) => ci.id !== item.id);
+            recalculateCartCount();
+            renderProduct(products)
+            renderCart();
+        });
         cartItemContainer.appendChild(cartItemDiv);
     });
     cartHeaderSubTitle.textContent = `${totalItem} items`;
-    totalAmount.textContent = `$${total.toFixed(2)}`;
+    totalAmount.textContent = `₹${total.toFixed(2)}`;
 }
 
+
+//-------------------------------
+//====== CART DRAWER OPEN / CLOSE ======
+//-------------------------------
 const cartBtn = document.getElementById("opencartBtn");
 const cartDrawer = document.querySelector(".drawer-panel");
 const closeCartBtn = document.getElementById('closeBtn');
@@ -618,5 +703,13 @@ if (cartBtn && cartDrawer && closeCartBtn) {
     closeCartBtn.addEventListener("click", () => {
         cartDrawer.classList.remove("open");
     });
+}
+
+//-------------------------------
+// Recalculate cart count from cart array
+//-------------------------------
+function recalculateCartCount() {
+    cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    updateCartCount();
 }
 

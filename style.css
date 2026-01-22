@@ -27,6 +27,8 @@ body {
     justify-content: space-between;
     gap: 20px;
     position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* Logo */
