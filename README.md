@@ -1,4 +1,4 @@
-# 🛒 Mini E-Commerce Web App (Vanilla JavaScript)
+# 🛒 Mini E-Commerce Web App 
 
 A fully functional **mini e-commerce web application** built using **HTML, CSS, and pure JavaScript** (no frameworks).  
 This project focuses on **real-world cart logic, stock management, and UI re-rendering**, similar to how production e-commerce systems work internally.
