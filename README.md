@@ -62,14 +62,23 @@ This project is **logic-focused**, not just UI:
 ## 🏗️ Project Structure
 
 /project
+
 │── index.html
+
 │── style.css
+
 │── app.js
+
 │── /Images
+
 │ ├── Clothing
+
 │ ├── Electronics
+
 │ ├── Stationary
+
 │ ├── Home
+
 │ └── Sports
 
 ---
