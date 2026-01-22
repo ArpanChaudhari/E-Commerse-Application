@@ -561,6 +561,7 @@ function handleAddToCart(productId) {
     recalculateCartCount();
 
     updateCartCount();
+    saveToLocalStorage();
     renderProduct(products); // Update stock badge
     renderCart(); //update cart UI
 }
@@ -659,6 +660,7 @@ function renderCart() {
             item.quantity += 1;
             product.stock -= 1;
             recalculateCartCount();
+            saveToLocalStorage();
             renderProduct(products);
             renderCart();
         });
@@ -671,6 +673,7 @@ function renderCart() {
                 cart = cart.filter((ci) => ci.id !== item.id);
             }
             recalculateCartCount();
+            saveToLocalStorage();
             renderProduct(products);
             renderCart();
         });
@@ -678,6 +681,7 @@ function renderCart() {
             product.stock += item.quantity;
             cart = cart.filter((ci) => ci.id !== item.id);
             recalculateCartCount();
+            saveToLocalStorage();
             renderProduct(products)
             renderCart();
         });
@@ -705,11 +709,46 @@ if (cartBtn && cartDrawer && closeCartBtn) {
     });
 }
 
+
+
 //-------------------------------
-// Recalculate cart count from cart array
+// Save cart & products to localStorage
 //-------------------------------
-function recalculateCartCount() {
-    cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    updateCartCount();
+function saveToLocalStorage() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("products", JSON.stringify(products));
 }
+
+
+//-------------------------------
+// Load cart & products from localStorage
+//-------------------------------
+function loadFromLocalStorage() {
+    const savedCart = localStorage.getItem("cart");
+    const savedProducts = localStorage.getItem("products");
+
+    if (savedCart && savedProducts) {
+        cart = JSON.parse(savedCart);
+
+        const storedProducts = JSON.parse(savedProducts);
+
+        // Update product stock from stored data
+        products.forEach(product => {  // loop over main products array
+            const storedProduct = storedProducts.find(p => p.id === product.id);  // find inside localstorage data(storedProducts) that match with products data
+            if (storedProduct) {
+                product.stock = storedProduct.stock; // then stock update on products data with localstorage data
+            }
+        });
+    }
+}
+
+
+//-------------------------------
+// INITIAL PAGE LOAD (BOOTSTRAP)
+//-------------------------------
+loadFromLocalStorage();     // 1️⃣ restore cart + product stock
+recalculateCartCount();    // 2️⃣ update header badge
+renderProduct(products);   // 3️⃣ update product stock UI
+renderCart();              // 4️⃣ update cart sidebar
+
 
