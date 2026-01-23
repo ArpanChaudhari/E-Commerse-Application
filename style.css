@@ -1039,6 +1039,12 @@ body {
     font-weight: 700;
     cursor: pointer;
 }
+.btn-clear[disabled],
+.btn-checkout[disabled] {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
 
 /* ================= MOBILE ================= */
 

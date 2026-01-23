@@ -689,8 +689,56 @@ function renderCart() {
     });
     cartHeaderSubTitle.textContent = `${totalItem} items`;
     totalAmount.textContent = `₹${total.toFixed(2)}`;
+
+
+    //--------------------------
+    //====== ClearCart & CheckOut logic ======
+    //--------------------------
+    const clearCart = document.getElementById('clearCart');
+    const checkOut = document.getElementById('checkOut');
+
+    clearCart.addEventListener('click', clearCartAndRestoreStock);
+    checkOut.addEventListener('click', checkOutAndUpdateStock);
+
+    if(cart.length === 0){
+        clearCart.disabled=true;
+        checkOut.disabled=true;
+    }else{
+        clearCart.disabled=false;
+        checkOut.disabled=false;
+    }
 }
 
+//-----------------------------
+//====== ClearCart - RestoreStock Logic ======
+//-----------------------------
+function clearCartAndRestoreStock() {
+    cart.forEach(item => {
+        const product = products.find(p => p.id === item.id);
+        if (product) {
+            product.stock += item.quantity;
+        }
+    });
+    cart = [];
+    localStorage.removeItem('cart');
+    localStorage.removeItem('products');
+    recalculateCartCount();
+    saveToLocalStorage();
+    renderProduct(products);
+    renderCart();
+}
+
+
+//-----------------------------
+//====== CheckOut Logic ======
+//-----------------------------
+function checkOutAndUpdateStock() {
+    cart = [];
+    recalculateCartCount();
+    saveToLocalStorage();
+    renderProduct(products);
+    renderCart();
+}
 
 //-------------------------------
 //====== CART DRAWER OPEN / CLOSE ======
