@@ -105,6 +105,16 @@ This project is **logic-focused**, not just UI:
 - Prevents adding beyond available stock
 - Automatically disables add button when stock is `0`
 
+### 5️⃣ Clear Cart Logic
+- Empties the entire cart
+- Restores stock for each product based on quantity
+- Resets UI and localStorage
+
+### 6️⃣ Checkout Logic
+- Clears cart and localStorage
+- Keeps updated stock
+- Resets cart UI and count
+
 ### 5️⃣ Local Storage
 - Cart and product data persist after refresh
 - Data is synced after every change
