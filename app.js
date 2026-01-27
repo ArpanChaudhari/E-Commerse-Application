@@ -407,6 +407,38 @@ function renderCategory() {
 renderProductHeader();
 renderCategory();
 
+//-------------------------------
+//====== Render Search bar ======
+//-------------------------------
+
+function renderSearch(){
+    const searchDiv=document.createElement("div");
+    searchDiv.className="product-search";
+
+    searchDiv.innerHTML=`
+    <input type="text"
+    id="searchInput"
+    placeholder="Search products..."
+    />
+    `;
+    productsContainer.appendChild(searchDiv);
+}
+renderSearch();
+
+//-----------------------------
+//====== search Input logic
+//-----------------------------
+const productSearchInput=document.getElementById('searchInput');
+
+productSearchInput.addEventListener('input',()=>{
+    const searchtext=productSearchInput.value.toLowerCase();
+
+    const filterProducts=products.filter(product=>{
+        return product.name.toLowerCase().includes(searchtext);
+    });
+    renderProduct(filterProducts);
+});
+
 
 //-------------------------------
 //====== to not UI duplicate ======
