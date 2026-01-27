@@ -668,7 +668,8 @@ function renderCart() {
         </div>
         <div class="cart-item-content-rowTwo">
         <div class="cart-item-content-rowTwo-left">
-        <button class="cart-item-Plus" id="plus">+</button>
+        <button class="cart-item-Plus" id="plus" 
+        ${product.stock === 0 ? "disabled" : "" }>+</button>
         <span class="cart-item-totalItem">${item.quantity}</span>
         <button class="cart-item-Minus" id="minus">-</button>
         </div>

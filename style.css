@@ -960,6 +960,10 @@ body {
     background: white;
     border-color: #6b7280;
 }
+.cart-item-Plus[disabled] {
+    opacity: .55;
+    cursor: not-allowed;
+}
 
 /* Row 2 */
 .cart-item-content-rowTwo {
