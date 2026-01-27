@@ -444,7 +444,7 @@ function renderProduct(productList) {
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}">
                 <span class="product-tag">${product.category}</span>
-                <span class="product-price">$${product.price}</span>
+                <span class="product-price">₹${product.price}</span>
             </div>
 
             <div class="product-info">
@@ -591,7 +591,7 @@ function checkCartState() {
         cartEmptyState.hidden = false;
         cartItemContainer.innerHTML = "";
         cartHeaderSubTitle.textContent = "0 items";
-        totalAmount.textContent = "$0.00";
+        totalAmount.textContent = "₹0.00";
         return false;
     } else {
         cartEmptyState.hidden = true;
@@ -794,9 +794,9 @@ function loadFromLocalStorage() {
 //-------------------------------
 // INITIAL PAGE LOAD (BOOTSTRAP)
 //-------------------------------
-loadFromLocalStorage();     // 1️⃣ restore cart + product stock
-recalculateCartCount();    // 2️⃣ update header badge
-renderProduct(products);   // 3️⃣ update product stock UI
-renderCart();              // 4️⃣ update cart sidebar
+loadFromLocalStorage();     //  restore cart + product stock
+recalculateCartCount();    //  update header badge
+renderProduct(products);   //  update product stock UI
+renderCart();              //  update cart sidebar
 
 
