@@ -21,6 +21,7 @@
 
 
 
+
         <div class="header-actions">
             <button id="loginBtn" class="header-btn">
                 <i class="fa-solid fa-user"></i>
@@ -174,6 +175,29 @@
     <!-- ================= PRODUCTS ================= -->
     <section class="products">
         <div class="products-container" id="productsContainer">
+            <div class="products-header">
+                <h2>Featured Products</h2>
+                <p>Discover our handpicked selection of premium products</p>
+            </div>
+            <div class="filters-container">
+                <div class="category-filters">
+                    <label for="category">Select Category</label>
+                    <select id="category" name="category">
+                        <option value="All">All</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Stationary">Stationary</option>
+                        <option value="Home">Home</option>
+                        <option value="Sports">Sports</option>
+                    </select>
+                </div>
+
+                <div class="product-search">
+                    <label for="searchInput">Search</label> <!-- Added label for consistency -->
+                    <input type="text" id="searchInput" placeholder="Search Products..." autocomplete="off"/>
+                    <ul id="searchDropedown" class="search-dropdown"></ul>
+                </div>
+            </div>
         </div>
     </section>
 

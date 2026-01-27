@@ -436,50 +436,94 @@ body {
 
 /* Filters */
 /* ================= Category Filters ================= */
-.category-filters {
+
+/* Container for both filters */
+.filters-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 32px;
-    /* reduced */
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-end;
+    /* Aligns label and input bottom-edges */
+    background: linear-gradient(135deg, #eff6ff, #ffffff, #f5f3ff);
+    border-radius: 12px;
 }
 
-.category-btn {
-    padding: 8px 16px;
-    border-radius: 999px;
-    border: 1px solid #e5e7eb;
-    background: #ffffff;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.category-btn.active {
-    background: #2563eb;
-    color: #ffffff;
-    border-color: #2563eb;
-}
-
-/* Search */
+/* Individual wrappers */
+.category-filters,
 .product-search {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Space between label and input */
     flex: 1;
-    max-width: 450px;
-    margin-bottom: 15px;
+    min-width: 200px;
+    /* Prevents them from getting too squashed */
 }
 
-.product-search input {
+/* Label styling */
+label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-left: 4px;
+}
+
+/* Shared styling for Select and Input */
+#category,
+#searchInput {
     width: 100%;
-    padding: 10px 14px;
-    border-radius: 6px;
-    border: 1px solid #d1d5db;
-    font-size: 14px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #1e293b;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    transition: all 0.2s ease-in-out;
+    outline: none;
 }
 
-.product-search input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-    outline: none;
+/* Focus effects */
+#category:focus,
+#searchInput:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Custom arrow for the select box */
+#category {
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    max-height: 250px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.search-dropdown li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+.search-dropdown li:hover {
+    background-color: #f5f5f5;
 }
 
 /* ================= Grid ================= */
@@ -960,6 +1004,7 @@ body {
     background: white;
     border-color: #6b7280;
 }
+
 .cart-item-Plus[disabled] {
     opacity: .55;
     cursor: not-allowed;

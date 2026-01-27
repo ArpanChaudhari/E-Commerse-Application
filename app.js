@@ -3,27 +3,6 @@
 //-------------------------------
 let cart = [];
 
-//-------------------------------
-//====== Section Heading ======
-//-------------------------------
-const productSectionInfo = {
-    title: "Featured Products",
-    tagline: "Discover our handpicked selection of premium products"
-};
-
-
-//-------------------------------
-//====== Category Button ======
-//-------------------------------
-const categories = [
-    "All",
-    "Clothing",
-    "Electronics",
-    "Stationary",
-    "Home",
-    "Sports"
-];
-
 
 //-------------------------------
 //====== Product Data ======
@@ -365,81 +344,6 @@ const products = [
 //====== first select product container ======
 //-------------------------------
 const productsContainer = document.getElementById('productsContainer');
-
-
-//-------------------------------
-//====== Render Section header ======
-//-------------------------------
-function renderProductHeader() {
-    const headerDiv = document.createElement("div"); //--> Create div for header content
-    headerDiv.className = "products-header"; //--> set class name
-
-    //Set title and tagline inside headerDiv
-    headerDiv.innerHTML = `
-    <h2>${productSectionInfo.title}</h2>
-    <p>${productSectionInfo.tagline}</p>
-    `;
-
-    productsContainer.appendChild(headerDiv);//append headerDiv content inside productContainer
-}
-
-//-------------------------------
-//====== Render Category ======
-//-------------------------------
-function renderCategory() {
-    const categoryDiv = document.createElement("div"); //create div for category button
-    categoryDiv.className = "category-filters"; //--> set class name
-
-    // take forEach loop over categories array not applieas logic for each item
-    categories.forEach((category, index) => {
-        const btn = document.createElement("button"); // create button for each item of array
-        btn.className = "category-btn"; //  set class name
-
-        if (index === 0) { // check condition - too active All-category
-            btn.classList.add("active");
-        }
-
-        btn.textContent = category;  // aasigning category name
-        categoryDiv.appendChild(btn);  // append btn inside categoryDiv
-    });
-    productsContainer.appendChild(categoryDiv); // append categoryDiv inside productsContainer
-}
-renderProductHeader();
-renderCategory();
-
-//-------------------------------
-//====== Render Search bar ======
-//-------------------------------
-
-function renderSearch(){
-    const searchDiv=document.createElement("div");
-    searchDiv.className="product-search";
-
-    searchDiv.innerHTML=`
-    <input type="text"
-    id="searchInput"
-    placeholder="Search products..."
-    />
-    `;
-    productsContainer.appendChild(searchDiv);
-}
-renderSearch();
-
-//-----------------------------
-//====== search Input logic
-//-----------------------------
-const productSearchInput=document.getElementById('searchInput');
-
-productSearchInput.addEventListener('input',()=>{
-    const searchtext=productSearchInput.value.toLowerCase();
-
-    const filterProducts=products.filter(product=>{
-        return product.name.toLowerCase().includes(searchtext);
-    });
-    renderProduct(filterProducts);
-});
-
-
 //-------------------------------
 //====== to not UI duplicate ======
 //-------------------------------
@@ -462,14 +366,14 @@ function renderProduct(productList) {
 
         // ---------- Stock text & class logic ----------
         const stockText =
-            product.stock === 0
-                ? "Out of stock"
-                : `In Stock: ${product.stock}`;
+            product.stock
+                ? `In Stock: ${product.stock}`
+                : "Out of stock";
 
         const stockClass =
-            product.stock === 0
-                ? "stock-badge-out"
-                : "stock-badge";
+            product.stock
+                ? "stock-badge"
+                : "stock-badge-out";
 
         // ---------- Card HTML ----------
         card.innerHTML = `
@@ -514,47 +418,86 @@ function renderProduct(productList) {
 }
 
 
+let selectCategory = "All";
+let searchText = ""
+
+function applyFilter() {
+    let filterProducts = products;
+
+    if (selectCategory !== "All") {
+        filterProducts = filterProducts.filter(product => product.category === selectCategory);
+        renderProduct(filterProducts);
+    }
+
+    if (searchText.trim() !== "") {
+        filterProducts = filterProducts.filter(product => product.name.toLowerCase().includes(searchText));
+        renderProduct(filterProducts);
+    }
+}
+//-----------------------------
+//====== search Input logic
+//-----------------------------
+const productSearchInput = document.getElementById('searchInput');
+
+productSearchInput.addEventListener('input', () => {
+    searchText = productSearchInput.value.toLowerCase();
+    applyFilter();
+});
+
+
+
 //-------------------------------
-// CATEGORY FILTER LOGIC -> Buttons are static → listener once
+// CATEGORY FILTER LOGIC 
 //-------------------------------
 function setupCategoryFilter() {
-    const categoryButtons = document.querySelectorAll(".category-btn");// querySelecterAll give a list
+    const categorySelect = document.getElementById('category');
 
-    // loops over all  button
-    categoryButtons.forEach(button => {
+    //add event on button
+    categorySelect.addEventListener('change', (option) => {
+        selectCategory = option.target.value;
 
-        //add event on button
-        button.addEventListener('click', () => {
-
-            // loops over all button to stop active state
-            categoryButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            //start active state on current button
-            button.classList.add('active');
-
-            // select button name to check condition
-            const selectCategory = button.textContent;
-
-            // check if all--> render=>render(products)
-            if (selectCategory === "All") {
-                renderProduct(products);
-            }
-            //else applied filter
-            else {
-
-                // filter reduce array by condition 
-                const filteredProducts = products.filter(product => product.category === selectCategory);
-
-                //render with filter array
-                renderProduct(filteredProducts);
-            }
-        });
+        applyFilter();
     });
 }
-renderProduct(products);  // To Change content when category button select
+renderProduct(products);  // To Change content when category option select
 setupCategoryFilter();
+
+// function searchDropDown() {
+//     const input = document.getElementById('searchInput');
+//     const dropdown = document.getElementById('searchDropdown');
+
+//     input.addEventListener("input", () => {
+//         const value = input.value.toLowerCase();
+//         dropdown.innerHTML = "";
+//         if (value === "") {
+//             dropdown.style.display = "none";
+//             return;
+//         }
+
+//         const filterProducts = products.filter(product => product.name.toLowerCase().includes(value));
+
+//         if (filterProducts.length === 0) {
+//             dropdown.style.display = "none";
+//             return;
+//         }
+
+//         filterProducts.forEach(product => {
+//             const li = document.createElement("li");
+//             li.innerHTML = `${product.name}`;
+
+//             li.addEventListener('click', () => {
+//                 input.value = product.name;
+//                 searchText = product.name.toLowerCase();
+//                 applyFilter();
+//                 dropdown.style.display = "none";
+//             });
+
+//             dropdown.appendChild(li);
+//         });
+//         dropdown.style.display = "block";
+//     })
+// }
+// searchDropDown();
 
 
 //-------------------------------
@@ -619,16 +562,14 @@ const totalAmount = document.getElementById('totalAmount');
 //====== CHECK CART EMPTY STATE ======
 //-------------------------------
 function checkCartState() {
-    if (cart.length === 0) {
-        cartEmptyState.hidden = false;
-        cartItemContainer.innerHTML = "";
-        cartHeaderSubTitle.textContent = "0 items";
-        totalAmount.textContent = "₹0.00";
-        return false;
-    } else {
+    if (cart.length) {
         cartEmptyState.hidden = true;
         return true;
     }
+    cartEmptyState.hidden = false;
+    cartItemContainer.innerHTML = "";
+    cartHeaderSubTitle.textContent = "0 items";
+    totalAmount.textContent = "₹0.00";
 }
 
 //-------------------------------
@@ -669,7 +610,7 @@ function renderCart() {
         <div class="cart-item-content-rowTwo">
         <div class="cart-item-content-rowTwo-left">
         <button class="cart-item-Plus" id="plus" 
-        ${product.stock === 0 ? "disabled" : "" }>+</button>
+        ${product.stock === 0 ? "disabled" : ""}>+</button>
         <span class="cart-item-totalItem">${item.quantity}</span>
         <button class="cart-item-Minus" id="minus">-</button>
         </div>
@@ -733,12 +674,12 @@ function renderCart() {
     clearCart.addEventListener('click', clearCartAndRestoreStock);
     checkOut.addEventListener('click', checkOutAndUpdateStock);
 
-    if(cart.length === 0){
-        clearCart.disabled=true;
-        checkOut.disabled=true;
-    }else{
-        clearCart.disabled=false;
-        checkOut.disabled=false;
+    if (cart.length === 0) {
+        clearCart.disabled = true;
+        checkOut.disabled = true;
+    } else {
+        clearCart.disabled = false;
+        checkOut.disabled = false;
     }
 }
 
