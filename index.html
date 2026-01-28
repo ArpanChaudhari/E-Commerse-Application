@@ -194,7 +194,7 @@
 
                 <div class="product-search">
                     <label for="searchInput">Search</label> <!-- Added label for consistency -->
-                    <input type="text" id="searchInput" placeholder="Search Products..." autocomplete="off"/>
+                    <input type="text" id="searchInput" placeholder="Search Products..." autocomplete="off" />
                     <ul id="searchDropedown" class="search-dropdown"></ul>
                 </div>
             </div>
@@ -295,38 +295,6 @@
         </div>
     </footer>
 
-    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Shopping cart">
-        <div class="drawer-header">
-            <div>
-                <div class="drawer-title">Your Cart</div>
-                <div class="drawer-subtitle" id="cartSubtitle">0 items</div>
-            </div>
-            <button class="icon-btn" id="closeBtn" type="button" data-action="close-cart">✕</button>
-        </div>
-
-        <div class="drawer-body">
-            <div id="cartItems" class="cart-items"></div>
-
-            <div id="cartEmpty" class="empty-state" hidden>
-                <div class="empty-title">Your cart is empty</div>
-                <div class="empty-subtitle">
-                    Add something you like from the product list.
-                </div>
-            </div>
-        </div>
-
-        <div class="drawer-footer">
-            <div class="totals">
-                <span>Total</span>
-                <strong id="totalAmount">$0.00</strong>
-            </div>
-            <div class="drawer-actions">
-                <button class="btn-clear" id="clearCart" disabled>Clear Cart</button>
-                <button class="btn-checkout" id="checkOut" disabled>Check Out</button>
-            </div>
-        </div>
-    </div>
-
 
 
     <!-- Icon Script -->
@@ -334,7 +302,9 @@
     <script>
         lucide.createIcons();
     </script>
-    <script src="app.js"></script>
+    <script src="data.js"></script>
+    <script src="product.js"></script>
+
 </body>
 
 </html>

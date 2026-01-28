@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SAME CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts / Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="logo">
+            <img src="Images/logo-ShopEase.png" class="logo-ShopEase">
+        </div>
+
+        <div class="header-actions">
+            <a href="index.html" class="header-btn">
+                ← Continue Shopping
+            </a>
+        </div>
+    </header>
+
+    <!-- ================= CART PAGE ================= -->
+    <main class="cart-page">
+        <div class="cart-container">
+
+            <!-- HEADER -->
+            <div class="drawer-header">
+                <div>
+                    <div class="drawer-title">Your Cart</div>
+                    <!-- 🔴 REQUIRED ID -->
+                    <div class="drawer-subtitle" id="cartSubtitle">0 items</div>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div class="drawer-body">
+
+                <!-- 🔴 REQUIRED ID -->
+                <div id="cartItems"></div>
+
+                <!-- 🔴 REQUIRED ID -->
+                <div id="cartEmpty" class="empty-state" hidden>
+                    <div class="empty-title">Your cart is empty</div>
+                    <div class="empty-subtitle">
+                        Add something you like from the product list.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="drawer-footer">
+                <div class="totals">
+                    <span>Total</span>
+                    <!-- 🔴 REQUIRED ID -->
+                    <strong id="totalAmount">₹0.00</strong>
+                </div>
+
+                <div class="drawer-actions">
+                    <!-- 🔴 REQUIRED IDs -->
+                    <button class="btn-clear" id="clearCart" disabled>
+                        Clear Cart
+                    </button>
+
+                    <button class="btn-checkout" id="checkOut" disabled>
+                        Check Out
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SAME JS -->
+    <script src="data.js"></script>
+    <script src="cart.js"></script>
+
+
+</body>
+
+</html>
