@@ -2,6 +2,7 @@
 // BOOTSTRAP
 // ===============================
 loadFromLocalStorage();
+recalculateCartCount();
 
 // ===============================
 // PRODUCT CONTAINER
@@ -12,7 +13,7 @@ productsGrid.className = "products-grid";
 productsContainer.appendChild(productsGrid);
 
 // ===============================
-// RENDER PRODUCTS
+// RENDER PRODUCTS (UNCHANGED)
 // ===============================
 function renderProduct(productList) {
     productsGrid.innerHTML = "";
@@ -21,20 +22,30 @@ function renderProduct(productList) {
         const card = document.createElement("div");
         card.className = "product-card";
 
-        const stockText = product.stock ? `In Stock: ${product.stock}` : "Out of stock";
-        const stockClass = product.stock ? "stock-badge" : "stock-badge-out";
+        const stockText =
+            product.stock ? `In Stock: ${product.stock}` : "Out of stock";
+
+        const stockClass =
+            product.stock ? "stock-badge" : "stock-badge-out";
 
         card.innerHTML = `
             <div class="product-image">
-                <img src="${product.image}">
+                <img src="${product.image}" alt="${product.name}">
                 <span class="product-tag">${product.category}</span>
                 <span class="product-price">₹${product.price}</span>
             </div>
+
             <div class="product-info">
-                <h3>${product.name}</h3>
+                <h3 class="product-name">${product.name}</h3>
+
                 <div class="stock-row">
                     <span class="${stockClass}">${stockText}</span>
-                    <button class="add-btn" ${product.stock === 0 ? "disabled" : ""}>
+
+                    <button 
+                        class="add-btn" 
+                        data-id="${product.id}"
+                        ${product.stock === 0 ? "disabled" : ""}
+                    >
                         Add to cart
                     </button>
                 </div>
@@ -50,20 +61,65 @@ function renderProduct(productList) {
 }
 
 // ===============================
-// ADD TO CART
+// FILTERING LOGIC (UNCHANGED)
 // ===============================
-const cartCountSpan = document.getElementById("cartCountBadge");
+let selectCategory = "All";
+let searchText = "";
 
-function updateCartCountUI() {
-    cartCountSpan.textContent = cartItemCount;
+function applyFilter() {
+    let filterProducts = products;
+
+    if (selectCategory !== "All") {
+        filterProducts = filterProducts.filter(
+            product => product.category === selectCategory
+        );
+    }
+
+    if (searchText.trim() !== "") {
+        filterProducts = filterProducts.filter(
+            product => product.name.toLowerCase().includes(searchText)
+        );
+    }
+
+    renderProduct(filterProducts);
 }
 
+// SEARCH
+const productSearchInput = document.getElementById('searchInput');
+productSearchInput.addEventListener('input', () => {
+    searchText = productSearchInput.value.toLowerCase();
+    applyFilter();
+});
+
+// CATEGORY
+function setupCategoryFilter() {
+    const categorySelect = document.getElementById('category');
+    categorySelect.addEventListener('change', (e) => {
+        selectCategory = e.target.value;
+        applyFilter();
+    });
+}
+
+// ===============================
+// CART COUNT (HEADER)
+// ===============================
+const cartCountSpan = document.getElementById('cartCountBadge');
+
+function updateCartCount() {
+    cartCountSpan.textContent = cartItemCount;
+}
+updateCartCount();
+
+// ===============================
+// ADD TO CART (UNCHANGED LOGIC)
+// ===============================
 function handleAddToCart(productId) {
     const product = products.find(p => p.id === productId);
-    const cartItem = cart.find(c => c.id === productId);
+    const cartItem = cart.find(item => item.id === productId);
 
-    if (cartItem) cartItem.quantity++;
-    else {
+    if (cartItem) {
+        cartItem.quantity += 1;
+    } else {
         cart.push({
             id: product.id,
             name: product.name,
@@ -74,22 +130,24 @@ function handleAddToCart(productId) {
         });
     }
 
-    product.stock--;
+    product.stock -= 1;
     recalculateCartCount();
-    updateCartCountUI();
+    updateCartCount();
     saveToLocalStorage();
-    renderProduct(products);
+    // renderProduct(products);
+    applyFilter();
 }
 
 // ===============================
-// REDIRECT TO CART
+// CART PAGE REDIRECT
 // ===============================
 document.getElementById("opencartBtn")
-    ?.addEventListener("click", () => window.location.href = "cart.html");
+    ?.addEventListener("click", () => {
+        window.location.href = "cart.html";
+    });
 
 // ===============================
 // INIT
 // ===============================
-recalculateCartCount();
-updateCartCountUI();
 renderProduct(products);
+setupCategoryFilter();
