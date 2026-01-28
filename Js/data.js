@@ -13,7 +13,7 @@ const products = [
         name: 'Premium Cotton T-Shirt',
         category: 'Clothing',
         price: 29.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Clothing/clothing  (1).jpeg',
     },
     {
@@ -21,7 +21,7 @@ const products = [
         name: 'Classic Denim Jeans',
         category: 'Clothing',
         price: 79.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Clothing/clothing  (2).jpeg',
     },
     {
@@ -29,7 +29,7 @@ const products = [
         name: 'Sport Sneakers',
         category: 'Clothing',
         price: 89.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Clothing/clothing  (3).jpeg',
     },
     {
@@ -37,7 +37,7 @@ const products = [
         name: 'Elegant Summer Dress',
         category: 'Clothing',
         price: 69.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Clothing/clothing  (4).jpeg',
     },
     {
@@ -45,7 +45,7 @@ const products = [
         name: 'Cozy Hoodie',
         category: 'Clothing',
         price: 54.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Clothing/clothing  (5).jpeg',
     },
     {
@@ -53,7 +53,7 @@ const products = [
         name: 'Winter Jacket',
         category: 'Clothing',
         price: 129.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Clothing/clothing  (6).jpeg',
     },
     {
@@ -61,7 +61,7 @@ const products = [
         name: 'Stylish Baseball Cap',
         category: 'Clothing',
         price: 24.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Clothing/clothing  (7).jpeg',
     },
     {
@@ -69,7 +69,7 @@ const products = [
         name: 'Designer Sunglasses',
         category: 'Clothing',
         price: 149.99,
-        stock: 15,
+        Quantity: 15,
         image: './Images/Clothing/clothing  (8).jpeg',
     },
 
@@ -79,7 +79,7 @@ const products = [
         name: 'Smartphone Pro',
         category: 'Electronics',
         price: 899.99,
-        stock: 17,
+        Quantity: 17,
         image: './Images/Electronics/Electronics (1).jpeg',
     },
     {
@@ -87,7 +87,7 @@ const products = [
         name: 'Laptop Ultra',
         category: 'Electronics',
         price: 1299.99,
-        stock: 10,
+        Quantity: 10,
         image: './Images/Electronics/Electronics (2).jpeg',
     },
     {
@@ -95,7 +95,7 @@ const products = [
         name: 'Tablet Device',
         category: 'Electronics',
         price: 499.99,
-        stock: 9,
+        Quantity: 9,
         image: './Images/Electronics/Electronics (3).jpeg',
     },
     {
@@ -103,7 +103,7 @@ const products = [
         name: 'DSLR Camera',
         category: 'Electronics',
         price: 1599.99,
-        stock: 10,
+        Quantity: 10,
         image: './Images/Electronics/Electronics (4).jpeg',
     },
     {
@@ -111,7 +111,7 @@ const products = [
         name: 'Gaming Console',
         category: 'Electronics',
         price: 499.99,
-        stock: 15,
+        Quantity: 15,
         image: './Images/Electronics/Electronics (5).jpeg',
     },
     {
@@ -119,7 +119,7 @@ const products = [
         name: 'Wireless Speaker',
         category: 'Electronics',
         price: 199.99,
-        stock: 13,
+        Quantity: 13,
         image: './Images/Electronics/Electronics (6).jpeg',
     },
     {
@@ -127,7 +127,7 @@ const products = [
         name: 'Mechanical Keyboard',
         category: 'Electronics',
         price: 149.99,
-        stock: 17,
+        Quantity: 17,
         image: './Images/Electronics/Electronics (7).jpeg',
     },
     {
@@ -135,7 +135,7 @@ const products = [
         name: 'Wireless Headphones',
         category: 'Electronics',
         price: 249.99,
-        stock: 21,
+        Quantity: 21,
         image: './Images/Electronics/Electronics (8).avif',
     },
 
@@ -145,7 +145,7 @@ const products = [
         name: 'Premium Pen Set',
         category: 'Stationary',
         price: 34.99,
-        stock: 20,
+        Quantity: 20,
         image: './Images/Stationary/Stationary (1).jpeg',
     },
     {
@@ -153,7 +153,7 @@ const products = [
         name: 'Sticky Notes Pack',
         category: 'Stationary',
         price: 12.99,
-        stock: 25,
+        Quantity: 25,
         image: './Images/Stationary/Stationary (2).jpeg',
     },
     {
@@ -161,7 +161,7 @@ const products = [
         name: 'Leather Planner',
         category: 'Stationary',
         price: 45.99,
-        stock: 25,
+        Quantity: 25,
         image: './Images/Stationary/Stationary (3).jpeg',
     },
     {
@@ -169,7 +169,7 @@ const products = [
         name: 'Desk Organizer',
         category: 'Stationary',
         price: 29.99,
-        stock: 6,
+        Quantity: 6,
         image: './Images/Stationary/Stationary (4).jpeg',
     },
     {
@@ -177,7 +177,7 @@ const products = [
         name: 'Highlighter Set',
         category: 'Stationary',
         price: 15.99,
-        stock: 14,
+        Quantity: 14,
         image: './Images/Stationary/Stationary (5).jpeg',
     },
     {
@@ -185,7 +185,7 @@ const products = [
         name: 'File Binder',
         category: 'Stationary',
         price: 18.99,
-        stock: 5,
+        Quantity: 5,
         image: './Images/Stationary/Stationary (6).jpeg',
     },
     {
@@ -193,7 +193,7 @@ const products = [
         name: 'Office Calculator',
         category: 'Stationary',
         price: 24.99,
-        stock: 10,
+        Quantity: 10,
         image: './Images/Stationary/Stationary (7).jpeg',
     },
     {
@@ -201,7 +201,7 @@ const products = [
         name: 'Premium Notebook Set',
         category: 'Stationary',
         price: 19.99,
-        stock: 5,
+        Quantity: 5,
         image: './Images/Stationary/Stationary (8).jpeg',
     },
 
@@ -211,7 +211,7 @@ const products = [
         name: 'Modern Sofa',
         category: 'Home',
         price: 899.99,
-        stock: 3,
+        Quantity: 3,
         image: './Images/Home/Home (1).jpeg',
     },
     {
@@ -219,7 +219,7 @@ const products = [
         name: 'Abstract Wall Art',
         category: 'Home',
         price: 129.99,
-        stock: 16,
+        Quantity: 16,
         image: './Images/Home/Home (2).jpeg',
     },
     {
@@ -227,7 +227,7 @@ const products = [
         name: 'Luxury Bedding Set',
         category: 'Home',
         price: 159.99,
-        stock: 4,
+        Quantity: 4,
         image: './Images/Home/Home (3).jpeg',
     },
     {
@@ -235,7 +235,7 @@ const products = [
         name: 'Ceramic Vase',
         category: 'Home',
         price: 49.99,
-        stock: 10,
+        Quantity: 10,
         image: './Images/Home/Home (4).jpeg',
     },
     {
@@ -243,7 +243,7 @@ const products = [
         name: 'Decorative Rug',
         category: 'Home',
         price: 199.99,
-        stock: 12,
+        Quantity: 12,
         image: './Images/Home/Home (5).jpeg',
     },
     {
@@ -251,7 +251,7 @@ const products = [
         name: 'Wall Mirror',
         category: 'Home',
         price: 89.99,
-        stock: 29,
+        Quantity: 29,
         image: './Images/Home/Home (6).jpeg',
     },
     {
@@ -259,7 +259,7 @@ const products = [
         name: 'Scented Candles',
         category: 'Home',
         price: 34.99,
-        stock: 27,
+        Quantity: 27,
         image: './Images/Home/Home (7).jpeg',
     },
     {
@@ -267,7 +267,7 @@ const products = [
         name: 'Modern Table Lamp',
         category: 'Home',
         price: 79.99,
-        stock: 20,
+        Quantity: 20,
         image: './Images/Home/Home (8).jpg',
     },
 
@@ -277,7 +277,7 @@ const products = [
         name: 'Running Shoes Pro',
         category: 'Sports',
         price: 119.99,
-        stock: 29,
+        Quantity: 29,
         image: './Images/Sports/Sports (1).jpeg',
     },
     {
@@ -285,7 +285,7 @@ const products = [
         name: 'Adjustable Dumbbells',
         category: 'Sports',
         price: 149.99,
-        stock: 14,
+        Quantity: 14,
         image: './Images/Sports/Sports (2).jpeg',
     },
     {
@@ -293,7 +293,7 @@ const products = [
         name: 'Basketball',
         category: 'Sports',
         price: 39.99,
-        stock: 26,
+        Quantity: 26,
         image: './Images/Sports/Sports (3).jpeg',
     },
     {
@@ -301,7 +301,7 @@ const products = [
         name: 'Sports Water Bottle',
         category: 'Sports',
         price: 24.99,
-        stock: 24,
+        Quantity: 24,
         image: './Images/Sports/Sports (4).jpg',
     },
     {
@@ -309,7 +309,7 @@ const products = [
         name: 'Resistance Bands',
         category: 'Sports',
         price: 29.99,
-        stock: 32,
+        Quantity: 32,
         image: './Images/Sports/Sports (5).jpeg',
     },
     {
@@ -317,7 +317,7 @@ const products = [
         name: 'Tennis Racket',
         category: 'Sports',
         price: 89.99,
-        stock: 18,
+        Quantity: 18,
         image: './Images/Sports/Sports (6).jpeg',
     },
     {
@@ -325,7 +325,7 @@ const products = [
         name: 'Mountain Bike',
         category: 'Sports',
         price: 599.99,
-        stock: 8,
+        Quantity: 8,
         image: './Images/Sports/Sports (7).jpeg',
     },
     {
@@ -333,7 +333,7 @@ const products = [
         name: 'Yoga Mat Pro',
         category: 'Sports',
         price: 39.99,
-        stock: 21,
+        Quantity: 21,
         image: './Images/Sports/Sports (8).jpg',
     },
 ];
@@ -365,7 +365,7 @@ function loadFromLocalStorage() {
         const storedProducts = JSON.parse(savedProducts);
         products.forEach(product => {
             const stored = storedProducts.find(p => p.id === product.id);
-            if (stored) product.stock = stored.stock;
+            if (stored) product.Quantity = stored.Quantity;
         });
     }
 }

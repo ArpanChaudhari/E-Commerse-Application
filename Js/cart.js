@@ -71,7 +71,7 @@ function renderCart() {
 
                     <div class="cart-item-content-rowTwo">
                         <div class="cart-item-content-rowTwo-left">
-                            <button class="cart-item-Plus" ${product.stock === 0 ? "disabled" : ""}>+</button>
+                            <button class="cart-item-Plus" ${product.Quantity === 0 ? "disabled" : ""}>+</button>
                             <span class="cart-item-totalItem">${item.quantity}</span>
                             <button class="cart-item-Minus">-</button>
                         </div>
@@ -92,9 +92,9 @@ function renderCart() {
             const itemRemove = cartItemDiv.querySelector('.cart-item-remove');
 
             itemAdd.onclick = () => {
-                if (product.stock === 0) return;
+                if (product.Quantity === 0) return;
                 item.quantity++;
-                product.stock--;
+                product.Quantity--;
                 recalculateCartCount();
                 saveToLocalStorage();
                 renderCart();
@@ -103,9 +103,9 @@ function renderCart() {
             itemMinus.onclick = () => {
                 if (item.quantity > 1) {
                     item.quantity--;
-                    product.stock++;
+                    product.Quantity++;
                 } else {
-                    product.stock += 1;
+                    product.Quantity += 1;
                     cart = cart.filter(ci => ci.id !== item.id);
                 }
                 recalculateCartCount();
@@ -114,7 +114,7 @@ function renderCart() {
             };
 
             itemRemove.onclick = () => {
-                product.stock += item.quantity;
+                product.Quantity += item.quantity;
                 cart = cart.filter(ci => ci.id !== item.id);
                 recalculateCartCount();
                 saveToLocalStorage();
@@ -134,8 +134,8 @@ function renderCart() {
     const clearCart = document.getElementById('clearCart');
     const checkOut = document.getElementById('checkOut');
 
-    clearCart.addEventListener('click', clearCartAndRestoreStock);
-    checkOut.addEventListener('click', checkOutAndUpdateStock);
+    clearCart.addEventListener('click', clearCartAndRestoreQuantity);
+    checkOut.addEventListener('click', checkOutAndUpdateQuantity);
 
     if (cart.length === 0) {
         clearCart.disabled = true;
@@ -150,11 +150,11 @@ function renderCart() {
 // ===============================
 // CLEAR CART
 // ===============================
-function clearCartAndRestoreStock() {
+function clearCartAndRestoreQuantity() {
     cart.forEach(item => {
         const product = products.find(p => p.id === item.id);
         if (product) {
-            product.stock += item.quantity;
+            product.Quantity += item.quantity;
         }
     });
 
@@ -166,7 +166,7 @@ function clearCartAndRestoreStock() {
     renderCart(); // ✅ cart page ko redraw karna enough hai
 }
 
-function checkOutAndUpdateStock() {
+function checkOutAndUpdateQuantity() {
     cart = [];
     recalculateCartCount();
     saveToLocalStorage();

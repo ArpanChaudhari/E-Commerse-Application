@@ -606,15 +606,15 @@ label {
     margin-bottom: 10px;
 }
 
-/* ================= Stock + Button ================= */
-.stock-row {
+/* ================= Quantity + Button ================= */
+.Quantity-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/* Stock Badge */
-.stock-badge {
+/* Quantity Badge */
+.Quantity-badge {
     display: inline-block;
     padding: 5px 10px;
     font-size: 12px;
@@ -625,7 +625,7 @@ label {
     border-radius: 999px;
 }
 
-.stock-badge-out {
+.Quantity-badge-out {
     display: inline-block;
     padding: 5px 10px;
     font-size: 15px;

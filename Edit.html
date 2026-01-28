@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS/form.css">
+</head>
+
+<body>
+
+    <!-- ===== Common Header ===== -->
+    <header class="header">
+        <div class="logo">
+            <img src="Images/logo-ShopEase.png" class="logo-ShopEase">
+        </div>
+
+        <div class="header-actions">
+            <a href="index.html" class="header-btn">
+                ← Continue Shopping
+            </a>
+        </div>
+    </header>
+
+    <!-- ===== Form Section ===== -->
+    <div class="form-container">
+        <h2>Edit Product Details</h2>
+
+        <form>
+            <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" placeholder="Enter product name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                <select required>
+                    <option value="">Select category</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Stationary">Stationary</option>
+                    <option value="Home">Home</option>
+                    <option value="Sports">Sports</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Price (₹)</label>
+                <input type="number" placeholder="Enter price" required>
+            </div>
+
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" placeholder="Enter quantity" required>
+            </div>
+
+            <div class="info-text">
+                Image is automatically assigned based on category
+            </div>
+
+            <button type="submit">Edit Details</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

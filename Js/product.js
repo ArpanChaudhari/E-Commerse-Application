@@ -22,11 +22,11 @@ function renderProduct(productList) {
         const card = document.createElement("div");
         card.className = "product-card";
 
-        const stockText =
-            product.stock ? `In Stock: ${product.stock}` : "Out of stock";
+        const QuantityText =
+            product.Quantity ? `Quantity: ${product.Quantity}` : "Out Of Stock";
 
-        const stockClass =
-            product.stock ? "stock-badge" : "stock-badge-out";
+        const QuantityClass =
+            product.Quantity ? "Quantity-badge" : "Quantity-badge-out";
 
         card.innerHTML = `
             <div class="product-image">
@@ -38,13 +38,13 @@ function renderProduct(productList) {
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
 
-                <div class="stock-row">
-                    <span class="${stockClass}">${stockText}</span>
+                <div class="Quantity-row">
+                    <span class="${QuantityClass}">${QuantityText}</span>
 
                     <button 
                         class="add-btn" 
                         data-id="${product.id}"
-                        ${product.stock === 0 ? "disabled" : ""}
+                        ${product.Quantity === 0 ? "disabled" : ""}
                     >
                         Add to cart
                     </button>
@@ -130,7 +130,7 @@ function handleAddToCart(productId) {
         });
     }
 
-    product.stock -= 1;
+    product.Quantity -= 1;
     recalculateCartCount();
     updateCartCount();
     saveToLocalStorage();
