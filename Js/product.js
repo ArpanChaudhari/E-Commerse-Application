@@ -22,33 +22,44 @@ function renderProduct(productList) {
         const card = document.createElement("div");
         card.className = "product-card";
 
-        const QuantityText =
-            product.Quantity ? `Quantity: ${product.Quantity}` : "Out Of Stock";
-
-        const QuantityClass =
-            product.Quantity ? "Quantity-badge" : "Quantity-badge-out";
-
         card.innerHTML = `
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
-                <span class="product-tag">${product.category}</span>
-                <span class="product-price">₹${product.price}</span>
-            </div>
+            <div class="product-card">
 
-            <div class="product-info">
-                <h3 class="product-name">${product.name}</h3>
+               <div class="product-image">
+                  <img src="${product.image}" alt="${product.name}">
 
-                <div class="Quantity-row">
-                    <span class="${QuantityClass}">${QuantityText}</span>
+                  <!-- Category -->
+                  <span class="product-tag">${product.category}</span>
+
+                  <!-- Top-right action icons -->
+                  <div class="product-actions">
+                    <button class="icon-btn">
+                    <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="icon-btn delete">
+                    <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+
+                    <div class="product-meta">
+                    <span class="price">₹${product.price}</span>
+                    <span class="stock">Quantity: ${product.Quantity}</span>
+                    </div>
 
                     <button 
-                        class="add-btn" 
-                        data-id="${product.id}"
-                        ${product.Quantity === 0 ? "disabled" : ""}
-                    >
-                        Add to cart
-                    </button>
+                       class="add-btn" 
+                       data-id="${product.id}"
+                       ${product.Quantity === 0 ? "disabled" : ""}
+                       >
+                       <i class="fa-solid fa-cart-shopping"></i>
+                       Add to Cart
+                       </button>
                 </div>
+
             </div>
         `;
 

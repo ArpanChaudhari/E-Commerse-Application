@@ -567,7 +567,8 @@ body {
     box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.new-product i{
+
+.new-product i {
     margin-right: 10px;
     font-size: 16px;
 }
@@ -602,17 +603,17 @@ body {
 }
 
 /* ================= Card ================= */
+/* ================= Card ================= */
 .product-card {
-    background: #ffffff;
-    border-radius: 14px;
-    /* slightly smaller */
+    background: #fff;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid #e5e7eb;
-    transition: 0.25s ease;
+    transition: .3s ease;
 }
 
 .product-card:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .15);
 }
 
 /* ================= Image ================= */
@@ -627,100 +628,100 @@ body {
     object-fit: cover;
 }
 
-/* Category Tag (bottom-left) */
+/* Category (Top-left) */
 .product-tag {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: #ffffff;
-    color: #2563eb;
+    top: 12px;
+    left: 12px;
+    background: #000;
+    color: #fff;
     font-size: 11px;
-    font-weight: 500;
     padding: 4px 10px;
     border-radius: 999px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Price Badge (bottom-right) */
-.product-price {
+/* Action icons (Top-right) */
+.product-actions {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: #ffffff;
-    color: #111827;
-    font-weight: 700;
-    font-size: 14px;
-    padding: 5px 10px;
-    border-radius: 10px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.product-actions .icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-actions .delete {
+    color: #dc2626;
 }
 
 /* ================= Info ================= */
 .product-info {
-    padding: 14px;
-    margin-top: 10px;
-    /* reduced padding */
+    padding: 16px;
 }
 
-/* Product Name */
 .product-name {
-    font-size: 19px;
-    /* slightly reduced */
+    font-size: 18px;
     font-weight: 700;
-
-    color: #111827;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-/* ================= Quantity + Button ================= */
-.Quantity-row {
+/* Price + Stock row */
+.product-meta {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
 }
 
-/* Quantity Badge */
-.Quantity-badge {
-    display: inline-block;
-    padding: 5px 10px;
+.price {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.stock {
     font-size: 12px;
-    font-weight: 500;
-    color: #2563eb;
-    background: #eff6ff;
-    border: 1px solid #2563eb;
-    border-radius: 999px;
+    color: #000;
+    font-weight: 600;
 }
-
-.Quantity-badge-out {
-    display: inline-block;
-    padding: 5px 10px;
-    font-size: 15px;
-    font-weight: 500;
-    color: red;
-}
-
 
 /* ================= Button ================= */
 .add-btn {
-    padding: 7px 14px;
-    /* compact */
-    font-size: 13px;
-    font-weight: 500;
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
     background: #2563eb;
-    color: #ffffff;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
-}
-
-.add-btn[disabled] {
-    opacity: .55;
-    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .add-btn:hover {
     background: #1e40af;
 }
+
+.add-btn[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
 
 /* ================= Responsive ================= */
 @media (max-width: 1024px) {
