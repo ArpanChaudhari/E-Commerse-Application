@@ -4,6 +4,7 @@
 loadFromLocalStorage();
 recalculateCartCount();
 
+
 // ===============================
 // CART DOM REFERENCES
 // ===============================
@@ -173,7 +174,9 @@ function checkOutAndUpdateQuantity() {
     renderCart(); // ✅
 }
 
-
+document.querySelector('.header-btn').addEventListener('click', () => {
+    window.location.href = "index.html#productsContainer";
+});
 // ===============================
 // INIT
 // ===============================

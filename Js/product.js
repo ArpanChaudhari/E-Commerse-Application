@@ -36,7 +36,7 @@ function renderProduct(productList) {
                     <button class="icon-btn edit-btn" data-id="${product.id}">
                     <i class="fa-solid fa-pen"></i>
                     </button>
-                    <button class="icon-btn delete">
+                    <button class="icon-btn delete-btn" data-id="${product.id}">
                     <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
@@ -158,12 +158,34 @@ document.getElementById("opencartBtn")
     });
 
 
-document.addEventListener('click',(e)=>{
-    if(e.target.closest('.edit-btn')){
-        const id=e.target.closest('.edit-btn').dataset.id;
-        window.location.href=`edit.html?id=${id}`;
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.edit-btn')) {
+        const id = e.target.closest('.edit-btn').dataset.id;
+        window.location.href = `edit.html?id=${id}`;
     }
 });
+document.addEventListener('click', (e) => {
+    const deleteBtn = e.target.closest('.delete-btn');
+    if (!deleteBtn) return;
+
+    const productId = Number(deleteBtn.dataset.id);
+
+    const confirmDelete = confirm("Are you sure you want to delete this product?");
+    if (!confirmDelete) return;
+
+    products = products.filter(p => p.id !== productId);
+
+    cart = cart.filter(item => item.id !== productId);
+
+    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    recalculateCartCount();
+    updateCartCount();
+    applyFilter();
+});
+
+
 // ===============================
 // INIT
 // ===============================
