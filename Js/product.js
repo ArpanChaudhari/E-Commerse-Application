@@ -163,7 +163,7 @@ document.addEventListener('click',(e)=>{
         const id=e.target.closest('.edit-btn').dataset.id;
         window.location.href=`edit.html?id=${id}`;
     }
-})
+});
 // ===============================
 // INIT
 // ===============================

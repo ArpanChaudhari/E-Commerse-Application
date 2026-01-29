@@ -5,6 +5,9 @@ const categoryImages = {
     Home: "./Images/Home/default.png",
     Sports: "./Images/Sports/default.png"
 };
+document.querySelector('.header-btn').addEventListener('click', () => {
+    window.location.href = "index.html#productsContainer";
+});
 
 function getNextId(items) {
     if (items.length === 0) return 1;
@@ -48,5 +51,5 @@ document.getElementById('AddProduct').addEventListener('submit', function (e) {
 
     this.reset();
     // renderProduct(products);
-    window.location.href="index.html#productsContainer";
+    window.location.href = "index.html#productsContainer";
 })

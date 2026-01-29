@@ -1,3 +1,6 @@
+document.querySelector('.header-btn').addEventListener('click', () => {
+    window.location.href = "index.html#productsContainer";
+});
 console.log(window.location.search);
 
 const data = new URLSearchParams(window.location.search);
