@@ -33,7 +33,7 @@ function renderProduct(productList) {
 
                   <!-- Top-right action icons -->
                   <div class="product-actions">
-                    <button class="icon-btn">
+                    <button class="icon-btn edit-btn" data-id="${product.id}">
                     <i class="fa-solid fa-pen"></i>
                     </button>
                     <button class="icon-btn delete">
@@ -157,6 +157,13 @@ document.getElementById("opencartBtn")
         window.location.href = "cart.html";
     });
 
+
+document.addEventListener('click',(e)=>{
+    if(e.target.closest('.edit-btn')){
+        const id=e.target.closest('.edit-btn').dataset.id;
+        window.location.href=`edit.html?id=${id}`;
+    }
+})
 // ===============================
 // INIT
 // ===============================

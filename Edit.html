@@ -27,15 +27,15 @@
     <div class="form-container">
         <h2>Edit Product Details</h2>
 
-        <form>
+        <form id="editProduct">
             <div class="form-group">
                 <label>Product Name</label>
-                <input type="text" placeholder="Enter product name" required>
+                <input type="text" id="productName" placeholder="Enter product name" required>
             </div>
 
             <div class="form-group">
                 <label>Category</label>
-                <select required>
+                <select id="category" required>
                     <option value="">Select category</option>
                     <option value="Clothing">Clothing</option>
                     <option value="Electronics">Electronics</option>
@@ -47,12 +47,12 @@
 
             <div class="form-group">
                 <label>Price (₹)</label>
-                <input type="number" placeholder="Enter price" required>
+                <input id="price" type="number" placeholder="Enter price" required>
             </div>
 
             <div class="form-group">
                 <label>Quantity</label>
-                <input type="number" placeholder="Enter quantity" required>
+                <input id="quantity" type="number" placeholder="Enter quantity" required>
             </div>
 
             <div class="info-text">
@@ -62,6 +62,7 @@
             <button type="submit">Edit Details</button>
         </form>
     </div>
+    <script src="Js/edit.js"></script>
 
 </body>
 
