@@ -75,7 +75,6 @@ function renderProduct(productList) {
 // FILTERING LOGIC (UNCHANGED)
 // ===============================
 let selectCategory = "All";
-let searchText = "";
 
 function applyFilter() {
     let filterProducts = products;
@@ -85,31 +84,73 @@ function applyFilter() {
             product => product.category === selectCategory
         );
     }
-
-    if (searchText.trim() !== "") {
-        filterProducts = filterProducts.filter(
-            product => product.name.toLowerCase().includes(searchText)
-        );
-    }
-
     renderProduct(filterProducts);
 }
-
-// SEARCH
-const productSearchInput = document.getElementById('searchInput');
-productSearchInput.addEventListener('input', () => {
-    searchText = productSearchInput.value.toLowerCase();
-    applyFilter();
-});
-
 // CATEGORY
 function setupCategoryFilter() {
     const categorySelect = document.getElementById('category');
     categorySelect.addEventListener('change', (e) => {
         selectCategory = e.target.value;
+
+        //reset search Input
+        productSearchInput.value = "";
+        suggestionBox.classList.add("hidden");
         applyFilter();
     });
 }
+
+// Search Input
+const productSearchInput = document.getElementById("searchInput");
+const suggestionBox = document.getElementById("searchSuggestions");
+
+productSearchInput.addEventListener('input', () => {
+    const value = productSearchInput.value.toLowerCase().trim();
+
+    suggestionBox.innerHTML = ""; // prevent from override
+
+    if (value === "") { //fot null search
+        suggestionBox.classList.add("hidden");
+        applyFilter();
+        return;
+    }
+
+    // if want show only selected category product then use this  otherwise remove this and use product array in find product
+    let searchBase=products;
+    if(selectCategory !== "All"){
+        searchBase=searchBase.filter(p=>p.category === selectCategory);
+    }
+
+    // find product (product-->search)
+    const matches = searchBase.filter(p => p.name.toLowerCase().includes(value)).slice(0, 3);
+
+    // for not finding any product
+    if (matches.length === 0) {
+        suggestionBox.classList.add("hidden");
+        return;
+    }
+
+    matches.forEach(product => {
+        const li = document.createElement("li"); //create list 
+        li.textContent = product.name; // show list item with product name
+
+        li.addEventListener("click", () => {
+            productSearchInput.value = product.name;
+
+            suggestionBox.classList.add("hidden");
+
+            renderProduct([product]);
+        });
+
+        suggestionBox.appendChild(li);
+    });
+    suggestionBox.classList.remove("hidden");
+});
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest(".search-wrapper")) {
+        suggestionBox.classList.add("hidden");
+    }
+});
 
 // ===============================
 // CART COUNT (HEADER)

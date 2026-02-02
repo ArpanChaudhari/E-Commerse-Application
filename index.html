@@ -192,11 +192,11 @@
                     </select>
                 </div>
 
-                <div class="product-search">
-                    <label for="searchInput">Search</label> <!-- Added label for consistency -->
-                    <input type="text" id="searchInput" placeholder="Search Products..." autocomplete="off" />
-                    <ul id="searchDropedown" class="search-dropdown"></ul>
+                <div class="search-wrapper">
+                    <input id="searchInput" type="text" placeholder="Search products">
+                    <ul id="searchSuggestions" class="suggestions hidden"></ul>
                 </div>
+
                 <div class="add-product">
                     <a href="create.html" class="new-product">
                         <i class="fa-solid fa-circle-plus"></i>

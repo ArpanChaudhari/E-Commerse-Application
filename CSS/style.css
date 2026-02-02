@@ -1172,3 +1172,36 @@ body {
         width: 100%;
     }
 }
+
+.search-wrapper {
+    position: relative;
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.suggestions li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions li:hover {
+    background: #f3f4f6;
+}
+
+.suggestions.hidden {
+    display: none;
+}

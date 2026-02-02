@@ -367,12 +367,12 @@ function recalculateCartCount() {
 // ===============================
 // LOCAL STORAGE
 // ===============================
-function saveToLocalStorage() {
+function saveToLocalStorage() {  // after every change
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("products", JSON.stringify(products));
 }
 
-function loadFromLocalStorage() {
+function loadFromLocalStorage() { // To restore the app state after page refresh or navigation
     const savedCart = localStorage.getItem("cart");
     const savedProducts = localStorage.getItem("products");
 
