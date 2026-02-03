@@ -49,7 +49,6 @@ document.getElementById('AddProduct').addEventListener('submit', function (e) {
 
     localStorage.setItem("products", JSON.stringify(products));
 
-    this.reset();
     // renderProduct(products);
     window.location.href = "index.html#productsContainer";
 })

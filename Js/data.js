@@ -386,3 +386,19 @@ function loadFromLocalStorage() { // To restore the app state after page refresh
         });
     }
 }
+
+// Back to Top Button
+const btn = document.getElementById('backToTop');
+const fill = document.getElementById('scrollFill');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollY / docHeight) * 100;
+
+  // Show/hide button
+  btn.style.display = scrollY > 300 ? 'flex' : 'none';
+
+  // Update fill height (max 100%)
+  fill.style.height = `${Math.min(100, scrollPercent)}%`;
+});
