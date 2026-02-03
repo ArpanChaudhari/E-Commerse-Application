@@ -115,9 +115,9 @@ productSearchInput.addEventListener('input', () => {
     }
 
     // if want show only selected category product then use this  otherwise remove this and use product array in find product
-    let searchBase=products;
-    if(selectCategory !== "All"){
-        searchBase=searchBase.filter(p=>p.category === selectCategory);
+    let searchBase = products;
+    if (selectCategory !== "All") {
+        searchBase = searchBase.filter(p => p.category === selectCategory);
     }
 
     // find product (product-->search)
@@ -194,7 +194,7 @@ function handleAddToCart(productId) {
 // CART PAGE REDIRECT
 // ===============================
 document.getElementById("opencartBtn")
-    ?.addEventListener("click", () => {
+    .addEventListener("click", () => {
         window.location.href = "cart.html";
     });
 
@@ -206,7 +206,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-const products=localStorage.getItem("products");
 document.addEventListener('click', (e) => {
     const deleteBtn = e.target.closest('.delete-btn');
     if (!deleteBtn) return;
