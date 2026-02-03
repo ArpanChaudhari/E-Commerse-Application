@@ -511,41 +511,40 @@ body {
 /* ================================
    SEARCH DROPDOWN
 ================================ */
-.product-search {
+
+.search-wrapper {
     position: relative;
 }
 
-.search-dropdown {
+.suggestions {
     position: absolute;
-    top: calc(100% + 6px);
+    top: 100%;
     left: 0;
-    right: 0;
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    max-height: 260px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    max-height: 180px;
     overflow-y: auto;
-    display: none;
-    z-index: 1000;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    z-index: 100;
 }
 
-/* Dropdown Item */
-.search-dropdown li {
-    padding: 12px 14px;
+.suggestions li {
+    padding: 10px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.9rem;
-    color: #334155;
-    transition: background 0.2s ease;
 }
 
-/* Hover */
-.search-dropdown li:hover {
-    background-color: #eef2ff;
+.suggestions li:hover {
+    background: #f3f4f6;
 }
+
+.suggestions.hidden {
+    display: none;
+}
+
 
 /* ================================
    ADD PRODUCT BUTTON
@@ -1173,39 +1172,6 @@ body {
     }
 }
 
-.search-wrapper {
-    position: relative;
-}
-
-.suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    list-style: none;
-    margin: 4px 0 0;
-    padding: 0;
-    max-height: 180px;
-    overflow-y: auto;
-    z-index: 100;
-}
-
-.suggestions li {
-    padding: 10px;
-    cursor: pointer;
-}
-
-.suggestions li:hover {
-    background: #f3f4f6;
-}
-
-.suggestions.hidden {
-    display: none;
-}
-
 
 /* Back to Top Button */
 .back-to-top-container {
@@ -1213,40 +1179,15 @@ body {
     right: 20px;
     bottom: 40px;
     display: none;
-    align-items: center;
-    flex-direction: column;
     z-index: 999;
-}
-
-/* Scroll bar background (track) */
-.scroll-track {
-    width: 4px;
-    height: 60px;
-    background-color: #ddd;
-    /* light grey track */
-    position: relative;
-    overflow: hidden;
-}
-
-/* Fill bar that grows inside */
-.scroll-fill {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #2563eb;
-    /* yellow fill */
-    height: 0%;
-    transition: height 0.2s ease-out;
-}
-
-.back-to-top {
     writing-mode: vertical-rl;
-    text-orientation: mixed;
     transform: rotate(180deg);
     font-weight: bold;
-    color: #2563eb;
+    color: darkblue;
+    background-color: white;
+    padding: 6px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 html {
