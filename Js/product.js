@@ -205,6 +205,8 @@ document.addEventListener('click', (e) => {
         window.location.href = `edit.html?id=${id}`;
     }
 });
+
+const products=localStorage.getItem("products");
 document.addEventListener('click', (e) => {
     const deleteBtn = e.target.closest('.delete-btn');
     if (!deleteBtn) return;
