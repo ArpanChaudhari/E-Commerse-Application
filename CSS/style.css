@@ -721,6 +721,12 @@ body {
     cursor: not-allowed;
 }
 
+.delete-btn[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
 
 /* ================= Responsive ================= */
 @media (max-width: 1024px) {

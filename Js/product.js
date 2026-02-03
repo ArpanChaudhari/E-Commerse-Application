@@ -22,6 +22,7 @@ function renderProduct(productList) {
         const card = document.createElement("div");
         card.className = "product-card";
 
+        const isInCart = cart.some(item => item.id === product.id);
         card.innerHTML = `
             <div class="product-card">
 
@@ -36,7 +37,8 @@ function renderProduct(productList) {
                     <button class="icon-btn edit-btn" data-id="${product.id}">
                     <i class="fa-solid fa-pen"></i>
                     </button>
-                    <button class="icon-btn delete-btn" data-id="${product.id}">
+                    <button class="icon-btn delete-btn" data-id="${product.id}"
+                    ${isInCart ? "disabled" : ""}>
                     <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
