@@ -416,6 +416,7 @@ body {
 .products-container {
     max-width: 1200px;
     margin: auto;
+    width: 100%;
 }
 
 /* Header */
@@ -596,8 +597,10 @@ body {
 /* ================= Grid ================= */
 .products-grid {
     display: grid;
+    grid-column: 1 / -1;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    width: 100%;
     /* tighter spacing */
 }
 

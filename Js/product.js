@@ -7,10 +7,8 @@ recalculateCartCount();
 // ===============================
 // PRODUCT CONTAINER
 // ===============================
-const productsContainer = document.getElementById('productsContainer');
-const productsGrid = document.createElement("div");
-productsGrid.className = "products-grid";
-productsContainer.appendChild(productsGrid);
+const productsGrid = document.querySelector(".products-grid");
+const template = document.getElementById("productCard");
 
 // ===============================
 // RENDER PRODUCTS (UNCHANGED)
@@ -19,57 +17,43 @@ function renderProduct(productList) {
     productsGrid.innerHTML = "";
 
     productList.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-
         const isInCart = cart.some(item => item.id === product.id);
-        card.innerHTML = `
-            <div class="product-card">
 
-               <div class="product-image">
-                  <img src="${product.image}" alt="${product.name}">
+        const clone = template.content.cloneNode(true);
 
-                  <!-- Category -->
-                  <span class="product-tag">${product.category}</span>
+        const img = clone.querySelector(".product-image img")
+        img.alt = product.name;
+        img.src = product.image;
 
-                  <!-- Top-right action icons -->
-                  <div class="product-actions">
-                    <button class="icon-btn edit-btn" data-id="${product.id}">
-                    <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="icon-btn delete-btn" data-id="${product.id}"
-                    ${isInCart ? "disabled" : ""}>
-                    <i class="fa-solid fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
+        clone.querySelector(".product-tag").textContent = product.category;
 
-                <div class="product-info">
-                    <h3 class="product-name">${product.name}</h3>
+        const edit = clone.querySelector(".edit-btn");
+        edit.dataset.id = product.id;
 
-                    <div class="product-meta">
-                    <span class="price">₹${product.price}</span>
-                    <span class="stock">Quantity: ${product.Quantity}</span>
-                    </div>
+        const deleteBtn = clone.querySelector(".delete-btn");
+        deleteBtn.dataset.id = product.id;
 
-                    <button 
-                       class="add-btn" 
-                       data-id="${product.id}"
-                       ${product.Quantity === 0 ? "disabled" : ""}
-                       >
-                       <i class="fa-solid fa-cart-shopping"></i>
-                       Add to Cart
-                       </button>
-                </div>
+        if (isInCart) {
+            deleteBtn.disabled=true;
+        }
 
-            </div>
-        `;
+        clone.querySelector(".product-name").textContent = product.name;
 
-        card.querySelector(".add-btn").addEventListener("click", () => {
+        clone.querySelector(".price").textContent = `₹${product.price}`;
+        clone.querySelector(".stock").textContent = `Quantity: ${product.Quantity}`;
+
+        const addProduct = clone.querySelector(".add-btn");
+        addProduct.dataset.id = product.id;
+        if (product.Quantity === 0) {
+            addProduct.disabled=true;
+        }
+
+
+        addProduct.addEventListener("click", () => {
             handleAddToCart(product.id);
         });
 
-        productsGrid.appendChild(card);
+        productsGrid.appendChild(clone);
     });
 }
 

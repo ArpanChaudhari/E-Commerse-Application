@@ -203,6 +203,32 @@
                         Add New Product
                     </a>
                 </div>
+
+                <div class="products-grid"></div>
+                <template id="productCard">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="" alt="">
+                            <span class="product-tag"></span>
+                            <div class="product-actions">
+                                <button class="edit-btn icon-btn">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button class="delete-btn icon-btn">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"></h3>
+                            <div class="product-meta">
+                                <span class="price"></span>
+                                <span class="stock"></span>
+                            </div>
+                            <button class="add-btn"><i class="fa-solid fa-cart-shopping"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
     </section>
