@@ -8,7 +8,6 @@ const productId = Number(data.get("id"));
 
 
 let products = JSON.parse(localStorage.getItem("products"));
-console.log(products);
 
 const product = products.find(p => p.id === productId);
 

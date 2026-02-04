@@ -18,19 +18,19 @@ function renderProduct(productList) {
 
     productList.forEach(product => {
         const isInCart = cart.some(item => item.id === product.id);
-
         const clone = template.content.cloneNode(true);
-
         const img = clone.querySelector(".product-image img")
+        const edit = clone.querySelector(".edit-btn");
+        const deleteBtn = clone.querySelector(".delete-btn");
+        const addProduct = clone.querySelector(".add-btn");
+
+
         img.alt = product.name;
         img.src = product.image;
 
         clone.querySelector(".product-tag").textContent = product.category;
 
-        const edit = clone.querySelector(".edit-btn");
         edit.dataset.id = product.id;
-
-        const deleteBtn = clone.querySelector(".delete-btn");
         deleteBtn.dataset.id = product.id;
 
         if (isInCart) {
@@ -38,17 +38,13 @@ function renderProduct(productList) {
         }
 
         clone.querySelector(".product-name").textContent = product.name;
-
         clone.querySelector(".price").textContent = `₹${product.price}`;
         clone.querySelector(".stock").textContent = `Quantity: ${product.Quantity}`;
 
-        const addProduct = clone.querySelector(".add-btn");
         addProduct.dataset.id = product.id;
         if (product.Quantity === 0) {
             addProduct.disabled=true;
         }
-
-
         addProduct.addEventListener("click", () => {
             handleAddToCart(product.id);
         });
@@ -81,6 +77,8 @@ function setupCategoryFilter() {
         //reset search Input
         productSearchInput.value = "";
         suggestionBox.classList.add("hidden");
+
+        
         applyFilter();
     });
 }
@@ -107,7 +105,7 @@ productSearchInput.addEventListener('input', () => {
     }
 
     // find product (product-->search)
-    const matches = searchBase.filter(p => p.name.toLowerCase().includes(value)).slice(0, 3);
+    const matches = searchBase.filter(p => p.name.toLowerCase().includes(value)).slice(0, 3);//only three matches
 
     // for not finding any product
     if (matches.length === 0) {
@@ -132,6 +130,7 @@ productSearchInput.addEventListener('input', () => {
     suggestionBox.classList.remove("hidden");
 });
 
+//outside click
 document.addEventListener('click', (e) => {
     if (!e.target.closest(".search-wrapper")) {
         suggestionBox.classList.add("hidden");
