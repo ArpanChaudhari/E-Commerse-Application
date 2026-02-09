@@ -17,7 +17,7 @@
         </div>
 
         <div class="header-actions">
-            <button class="header-btn">
+            <button class="header-btn" >
                 ← Continue Shopping
             </button>
         </div>
@@ -25,12 +25,12 @@
 
     <!-- ===== Form Section ===== -->
     <div class="form-container">
-        <h2>Edit Product Details</h2>
+        <h2>Add New Product</h2>
 
-        <form id="editProduct">
+        <form id="AddProduct">
             <div class="form-group">
                 <label>Product Name</label>
-                <input type="text" id="productName" placeholder="Enter product name" required>
+                <input id="productName" type="text" placeholder="Enter product name" required>
             </div>
 
             <div class="form-group">
@@ -59,9 +59,10 @@
                 Image is automatically assigned based on category
             </div>
 
-            <button type="submit">Edit Details</button>
+            <button id="formBtn" type="submit">Add Product</button>
         </form>
     </div>
+    <script src="Js/Create.js"></script>
     <script src="Js/edit.js"></script>
 
 </body>

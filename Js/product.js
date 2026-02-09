@@ -187,7 +187,7 @@ document.getElementById("opencartBtn")
 document.addEventListener('click', (e) => {
     if (e.target.closest('.edit-btn')) {
         const id = e.target.closest('.edit-btn').dataset.id;
-        window.location.href = `edit.html?id=${id}`;
+        window.location.href = `form.html?id=${id}`;
     }
 });
 

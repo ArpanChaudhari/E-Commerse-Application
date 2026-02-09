@@ -3,6 +3,8 @@ document.querySelector('.header-btn').addEventListener('click', () => {
 });
 console.log(window.location.search);
 
+
+
 const data = new URLSearchParams(window.location.search);
 const productId = Number(data.get("id"));
 
@@ -16,8 +18,11 @@ document.getElementById('category').value = product.category;
 document.getElementById('price').value = product.price;
 document.getElementById('quantity').value = product.Quantity;
 
+document.getElementById('formBtn').textContent = "Edit Details";
+document.querySelector('.form-container h2').textContent = "Edit Product Details";
 
-document.getElementById('editProduct').addEventListener('submit', (e) => {
+
+document.getElementById('AddProduct').addEventListener('submit', (e) => {
     e.preventDefault();
 
     product.name = document.getElementById('productName').value;
