@@ -83,7 +83,7 @@ document.getElementById('AddProduct').addEventListener('submit', function (e) {
         editProduct.Quantity = qty;
 
         localStorage.setItem("products", JSON.stringify(products));
-        alert("✅ Product Updated Successfully");
+        alert("Product Updated Successfully");
 
     } 
     // ===============================
@@ -101,7 +101,7 @@ document.getElementById('AddProduct').addEventListener('submit', function (e) {
 
         products.push(newProduct);
         localStorage.setItem("products", JSON.stringify(products));
-        alert("✅ Product Added Successfully");
+        alert("Product Added Successfully");
     }
 
     window.location.href = "index.html#productsContainer";
