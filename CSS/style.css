@@ -62,6 +62,73 @@ body {
     background: #1e40af;
 }
 
+.btn {
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.login-signup-btn {
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.login-signup-btn:hover {
+    background: #1e40af;
+    color: #fff;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    border-radius: 5px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a i {
+    margin-right: 10px;
+    color: #2563eb;
+    width: 20px;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(224, 243, 255);
+    color: #2563eb;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 /* Header Badge */
 .header-badge {
     background: #ffffff;
