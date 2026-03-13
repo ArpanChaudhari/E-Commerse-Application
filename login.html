@@ -24,26 +24,26 @@
                     <img src="Images/logo-ShopEase.png" alt="ShopEase Logo" class="logo-image">
                 </div>
 
-                <h2 class="page-title">Welcome Back</h2>
-                <p class="subtitle">Please enter your details to sign in</p>
+                <h2 id="pageTitle" class="page-title">Welcome Back</h2>
+                <p id="subTitle" class="subtitle">Please enter your details to sign in</p>
 
-                <div class="social-login">
+                <div id="socialLogin" class="social-login">
                     <button>
                         <i class="fa-brands fa-google"></i>
                         Continue with Google
                     </button>
                 </div>
 
-                <div class="divider">
+                <div id="divider" class="divider">
                     <span>Or continue with email</span>
                 </div>
 
-                <form>
+                <form id="login">
 
                     <label>Email</label>
                     <div class="input-group">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="email" placeholder="Enter your email">
+                        <input id="email" type="email" placeholder="Enter your email">
                     </div>
 
                     <label>Password</label>
@@ -63,14 +63,14 @@
 
                     </div>
 
-                    <button class="auth-btn">Sign In</button>
+                    <button id="authBtn" class="auth-btn">Sign In</button>
 
                 </form>
 
-                <p class="auth-link">
-                    Don't have an account?
-                    <a href="signup.html">Sign up</a>
-                </p>
+                <div id="authLink" class="auth-link">
+                    <p>Don't have an account?</p>
+                    <a id="signupLink" href="signup.html">Sign up</a>
+                </div>
 
             </div>
 
@@ -117,7 +117,7 @@
 
     </div>
 
-
+    <script src="Js/auth.js"></script>
     <script>
 
         function togglePassword() {

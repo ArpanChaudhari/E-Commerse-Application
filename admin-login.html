@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | ShopEase</title>
+
+    <link rel="stylesheet" href="CSS/auth.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-wrapper">
+
+        <div class="admin-card">
+
+
+            <div class="admin-logo">
+                <img src="Images/logo-footer-ShopEase.png" alt="ShopEase Logo">
+            </div>
+
+            <h2 class="admin-title">Admin Portal</h2>
+
+            <p class="admin-subtitle">
+                Sign in to access the dashboard
+            </p>
+
+            <div class="admin-alert">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <p>
+                    Only authorized personnel can access this area.
+                    All login attempts are logged and monitored.
+                </p>
+
+            </div>
+
+            <form>
+
+                <label>Email Address</label>
+
+                <div class="admin-input">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="admin@company.com">
+                </div>
+
+                <label>Password</label>
+
+                <div class="admin-input">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input type="password" id="password" placeholder="Enter your password">
+
+                    <i class="fa-solid fa-eye toggle-password" onclick="togglePassword()"></i>
+
+                </div>
+
+                <div class="admin-options">
+
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+
+                    <a href="#">Forgot password?</a>
+
+                </div>
+
+                <button class="admin-login-btn">
+                    Sign in to Dashboard
+                </button>
+
+            </form>
+
+            <div class="admin-divider"></div>
+
+            <button class="admin-2fa-btn">
+                <i class="fa-solid fa-shield-halved"></i>
+                Sign in with 2FA
+            </button>
+
+            <p class="admin-support">
+                Need admin access?
+                <a href="#">Contact IT Support</a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function togglePassword() {
+
+            const password = document.getElementById("password");
+            const icon = document.querySelector(".toggle-password");
+
+            if (password.type === "password") {
+                password.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                password.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
