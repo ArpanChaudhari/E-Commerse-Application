@@ -6,17 +6,18 @@
     <title>Your Cart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SAME CSS -->
     <link rel="stylesheet" href="CSS/style.css">
 
-    <!-- Fonts / Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+    <!-- HEADER -->
     <header class="header">
         <div class="logo">
             <img src="Images/logo-ShopEase.png" class="logo-ShopEase">
@@ -29,26 +30,21 @@
         </div>
     </header>
 
-    <!-- ================= CART PAGE ================= -->
+    <!-- CART PAGE -->
     <main class="cart-page">
         <div class="cart-container">
 
-            <!-- HEADER -->
             <div class="drawer-header">
                 <div>
                     <div class="drawer-title">Your Cart</div>
-                    <!-- 🔴 REQUIRED ID -->
                     <div class="drawer-subtitle" id="cartSubtitle">0 items</div>
                 </div>
             </div>
 
-            <!-- BODY -->
             <div class="drawer-body">
 
-                <!-- 🔴 REQUIRED ID -->
                 <div id="cartItems"></div>
 
-                <!-- 🔴 REQUIRED ID -->
                 <div id="cartEmpty" class="empty-state" hidden>
                     <div class="empty-title">Your cart is empty</div>
                     <div class="empty-subtitle">
@@ -58,16 +54,13 @@
 
             </div>
 
-            <!-- FOOTER -->
             <div class="drawer-footer">
                 <div class="totals">
                     <span>Total</span>
-                    <!-- 🔴 REQUIRED ID -->
                     <strong id="totalAmount">₹0.00</strong>
                 </div>
 
                 <div class="drawer-actions">
-                    <!-- 🔴 REQUIRED IDs -->
                     <button class="btn-clear" id="clearCart" disabled>
                         Clear Cart
                     </button>
@@ -81,11 +74,47 @@
         </div>
     </main>
 
-    <!-- SAME JS -->
+    <!-- ✅ TEMPLATE -->
+    <template id="cartItemTemplate">
+        <div class="cart-item">
+            <div class="cart-item-grid">
+
+                <div class="cart-item-image">
+                    <img class="item-image" src="" alt="">
+                </div>
+
+                <div class="cart-item-content">
+                    <div class="cart-item-content-rowOne">
+                        <div class="cart-item-content-rowOne-left">
+                            <h3 class="cart-item-name"></h3>
+                            <span class="cart-item-category"></span>
+                        </div>
+
+                        <div class="cart-item-content-rowOne-right">
+                            <button class="cart-item-remove">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="cart-item-content-rowTwo">
+                        <div class="cart-item-content-rowTwo-left">
+                            <button class="cart-item-Plus">+</button>
+                            <span class="cart-item-totalItem"></span>
+                            <button class="cart-item-Minus">-</button>
+                        </div>
+
+                        <div class="cart-item-content-rowTwo-right">
+                            <span class="cart-item-totalPrice"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </template>
+
+    <!-- JS -->
     <script src="Js/data.js"></script>
     <script src="Js/cart.js"></script>
 
-
 </body>
-
 </html>

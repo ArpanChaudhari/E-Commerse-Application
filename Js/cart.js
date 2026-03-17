@@ -4,14 +4,14 @@
 loadFromLocalStorage();
 recalculateCartCount();
 
-
 // ===============================
-// CART DOM REFERENCES
+// DOM REFERENCES
 // ===============================
 const cartItemContainer = document.getElementById('cartItems');
 const cartEmptyState = document.getElementById('cartEmpty');
 const cartHeaderSubTitle = document.getElementById('cartSubtitle');
 const totalAmount = document.getElementById('totalAmount');
+const template = document.getElementById('cartItemTemplate');
 
 // ===============================
 // CHECK EMPTY STATE
@@ -29,114 +29,101 @@ function checkCartState() {
 }
 
 // ===============================
-// RENDER CART (UNCHANGED STRUCTURE)
+// RENDER CART USING TEMPLATE
 // ===============================
 function renderCart() {
+
     cartItemContainer.innerHTML = "";
 
     let total = 0;
     let totalItem = 0;
 
-    if (cart.length === 0) {
-        checkCartState();
-    } else {
-        cart.forEach(item => {
-            const product = products.find(p => p.id === item.id);
-            const itemTotalPrice = item.price * item.quantity;
+    if (!checkCartState()) return;
 
-            total += itemTotalPrice;
-            totalItem += item.quantity;
+    cart.forEach(item => {
 
-            const cartItemDiv = document.createElement("div");
-            cartItemDiv.className = "cart-item";
+        const product = products.find(p => p.id === item.id);
+        const itemTotalPrice = item.price * item.quantity;
 
-            cartItemDiv.innerHTML = `
-            <div class="cart-item-grid">
-                <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>
+        total += itemTotalPrice;
+        totalItem += item.quantity;
 
-                <div class="cart-item-content">
-                    <div class="cart-item-content-rowOne">
-                        <div class="cart-item-content-rowOne-left">
-                            <h3 class="cart-item-name">${item.name}</h3>
-                            <span class="cart-item-category">
-                                ${item.category} - ₹${item.price}
-                            </span>
-                        </div>
+        // ✅ TEMPLATE CLONE
+        const clone = template.content.cloneNode(true);
 
-                        <div class="cart-item-content-rowOne-right">
-                            <button class="cart-item-remove">Remove</button>
-                        </div>
-                    </div>
+        // Fill data
+        clone.querySelector('.item-image').src = item.image;
+        clone.querySelector('.item-image').alt = item.name;
+        clone.querySelector('.cart-item-name').textContent = item.name;
+        clone.querySelector('.cart-item-category').textContent =
+            `${item.category} - ₹${item.price}`;
+        clone.querySelector('.cart-item-totalItem').textContent = item.quantity;
+        clone.querySelector('.cart-item-totalPrice').textContent =
+            `₹${itemTotalPrice.toFixed(2)}`;
 
-                    <div class="cart-item-content-rowTwo">
-                        <div class="cart-item-content-rowTwo-left">
-                            <button class="cart-item-Plus" ${product.Quantity === 0 ? "disabled" : ""}>+</button>
-                            <span class="cart-item-totalItem">${item.quantity}</span>
-                            <button class="cart-item-Minus">-</button>
-                        </div>
+        // Buttons
+        const itemAdd = clone.querySelector('.cart-item-Plus');
+        const itemMinus = clone.querySelector('.cart-item-Minus');
+        const itemRemove = clone.querySelector('.cart-item-remove');
 
-                        <div class="cart-item-content-rowTwo-right">
-                            <span class="cart-item-totalPrice">
-                                ₹${itemTotalPrice.toFixed(2)}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+        // Disable if no stock
+        if (product.Quantity === 0) {
+            itemAdd.disabled = true;
+        }
 
-            // EVENTS
-            const itemAdd = cartItemDiv.querySelector('.cart-item-Plus');
-            const itemMinus = cartItemDiv.querySelector('.cart-item-Minus');
-            const itemRemove = cartItemDiv.querySelector('.cart-item-remove');
+        // EVENTS
+        itemAdd.onclick = () => {
+            if (product.Quantity === 0) return;
+            item.quantity++;
+            product.Quantity--;
+            updateCart();
+        };
 
-            itemAdd.onclick = () => {
-                if (product.Quantity === 0) return;
-                item.quantity++;
-                product.Quantity--;
-                recalculateCartCount();
-                saveToLocalStorage();
-                renderCart();
-            };
-
-            itemMinus.onclick = () => {
-                if (item.quantity > 1) {
-                    item.quantity--;
-                    product.Quantity++;
-                } else {
-                    product.Quantity += 1;
-                    cart = cart.filter(ci => ci.id !== item.id);
-                }
-                recalculateCartCount();
-                saveToLocalStorage();
-                renderCart();
-            };
-
-            itemRemove.onclick = () => {
-                product.Quantity += item.quantity;
+        itemMinus.onclick = () => {
+            if (item.quantity > 1) {
+                item.quantity--;
+                product.Quantity++;
+            } else {
+                product.Quantity += 1;
                 cart = cart.filter(ci => ci.id !== item.id);
-                recalculateCartCount();
-                saveToLocalStorage();
-                renderCart();
-            };
+            }
+            updateCart();
+        };
 
-            cartItemContainer.appendChild(cartItemDiv);
-        });
-    }
+        itemRemove.onclick = () => {
+            product.Quantity += item.quantity;
+            cart = cart.filter(ci => ci.id !== item.id);
+            updateCart();
+        };
+
+        cartItemContainer.appendChild(clone);
+    });
 
     cartHeaderSubTitle.textContent = `${totalItem} items`;
     totalAmount.textContent = `₹${total.toFixed(2)}`;
 
-    //--------------------------
-    //====== ClearCart & CheckOut logic ======
-    //--------------------------
+    setupButtons();
+}
+
+// ===============================
+// COMMON UPDATE FUNCTION (BEST PRACTICE)
+// ===============================
+function updateCart() {
+    recalculateCartCount();
+    saveToLocalStorage();
+    renderCart();
+}
+
+// ===============================
+// BUTTON HANDLING
+// ===============================
+function setupButtons() {
+
     const clearCart = document.getElementById('clearCart');
     const checkOut = document.getElementById('checkOut');
 
-    clearCart.addEventListener('click', clearCartAndRestoreQuantity);
-    checkOut.addEventListener('click', checkOutAndUpdateQuantity);
+    clearCart.onclick = clearCartAndRestoreQuantity;
+    checkOut.onclick = checkOutAndUpdateQuantity;
 
     if (cart.length === 0) {
         clearCart.disabled = true;
@@ -145,7 +132,6 @@ function renderCart() {
         clearCart.disabled = false;
         checkOut.disabled = false;
     }
-
 }
 
 // ===============================
@@ -162,21 +148,25 @@ function clearCartAndRestoreQuantity() {
     cart = [];
     localStorage.removeItem('cart');
     localStorage.removeItem('products');
-    recalculateCartCount();
-    saveToLocalStorage();
-    renderCart(); // ✅ cart page ko redraw karna enough hai
+
+    updateCart();
 }
 
+// ===============================
+// CHECKOUT
+// ===============================
 function checkOutAndUpdateQuantity() {
     cart = [];
-    recalculateCartCount();
-    saveToLocalStorage();
-    renderCart(); // ✅
+    updateCart();
 }
 
+// ===============================
+// NAVIGATION
+// ===============================
 document.querySelector('.header-btn').addEventListener('click', () => {
     window.location.href = "index.html#productsContainer";
 });
+
 // ===============================
 // INIT
 // ===============================
