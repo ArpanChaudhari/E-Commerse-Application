@@ -355,14 +355,6 @@ function initProducts() {
 initProducts();
 
 
-// ===============================
-// CART COUNT
-// ===============================
-let cartItemCount = 0;
-
-function recalculateCartCount() {
-    cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-}
 
 // ===============================
 // LOCAL STORAGE
@@ -396,3 +388,14 @@ window.addEventListener('scroll', () => {
   // Show/hide button
   btn.style.display = scrollY > 300 ? 'flex' : 'none';
 });
+
+// ===============================
+// EXPORTS
+// ===============================
+export {
+    cart,
+    products,
+    initProducts,
+    loadFromLocalStorage,
+    saveToLocalStorage
+};

@@ -1,8 +1,17 @@
 // ===============================
+// IMPORTS (IMPORTANT)
+// ===============================
+import {
+    cart,
+    products,
+    loadFromLocalStorage,
+    saveToLocalStorage
+} from "./data.js";
+
+// ===============================
 // BOOTSTRAP
 // ===============================
 loadFromLocalStorage();
-recalculateCartCount();
 
 // ===============================
 // DOM REFERENCES
@@ -21,17 +30,29 @@ function checkCartState() {
         cartEmptyState.hidden = true;
         return true;
     }
+
     cartEmptyState.hidden = false;
     cartItemContainer.innerHTML = "";
     cartHeaderSubTitle.textContent = "0 items";
     totalAmount.textContent = "₹0.00";
+
     return false;
 }
 
 // ===============================
-// RENDER CART USING TEMPLATE
+// REMOVE ITEM (FIXED)
+// ===============================
+function removeItem(id) {
+    const index = cart.findIndex(ci => ci.id === id);
+    if (index !== -1) cart.splice(index, 1);
+}
+
+// ===============================
+// RENDER CART (YOUR DESIGN KEPT)
 // ===============================
 function renderCart() {
+
+    if (!cartItemContainer) return;
 
     cartItemContainer.innerHTML = "";
 
@@ -48,7 +69,7 @@ function renderCart() {
         total += itemTotalPrice;
         totalItem += item.quantity;
 
-        // ✅ TEMPLATE CLONE
+        // ✅ TEMPLATE CLONE (UNCHANGED)
         const clone = template.content.cloneNode(true);
 
         // Fill data
@@ -67,15 +88,19 @@ function renderCart() {
         const itemRemove = clone.querySelector('.cart-item-remove');
 
         // Disable if no stock
-        if (product.Quantity === 0) {
+        if (product && product.Quantity === 0) {
             itemAdd.disabled = true;
         }
 
-        // EVENTS
+        // ===============================
+        // EVENTS (FIXED LOGIC)
+        // ===============================
         itemAdd.onclick = () => {
             if (product.Quantity === 0) return;
+
             item.quantity++;
             product.Quantity--;
+
             updateCart();
         };
 
@@ -85,14 +110,16 @@ function renderCart() {
                 product.Quantity++;
             } else {
                 product.Quantity += 1;
-                cart = cart.filter(ci => ci.id !== item.id);
+                removeItem(item.id);
             }
+
             updateCart();
         };
 
         itemRemove.onclick = () => {
             product.Quantity += item.quantity;
-            cart = cart.filter(ci => ci.id !== item.id);
+            removeItem(item.id);
+
             updateCart();
         };
 
@@ -106,10 +133,9 @@ function renderCart() {
 }
 
 // ===============================
-// COMMON UPDATE FUNCTION (BEST PRACTICE)
+// UPDATE FUNCTION
 // ===============================
 function updateCart() {
-    recalculateCartCount();
     saveToLocalStorage();
     renderCart();
 }
@@ -121,6 +147,8 @@ function setupButtons() {
 
     const clearCart = document.getElementById('clearCart');
     const checkOut = document.getElementById('checkOut');
+
+    if (!clearCart || !checkOut) return;
 
     clearCart.onclick = clearCartAndRestoreQuantity;
     checkOut.onclick = checkOutAndUpdateQuantity;
@@ -135,35 +163,34 @@ function setupButtons() {
 }
 
 // ===============================
-// CLEAR CART
+// CLEAR CART (FIXED)
 // ===============================
 function clearCartAndRestoreQuantity() {
     cart.forEach(item => {
         const product = products.find(p => p.id === item.id);
-        if (product) {
-            product.Quantity += item.quantity;
-        }
+        if (product) product.Quantity += item.quantity;
     });
 
-    cart = [];
-    localStorage.removeItem('cart');
-    localStorage.removeItem('products');
+    cart.length = 0; // ✅ FIXED (NO reassignment)
 
-    updateCart();
+    saveToLocalStorage();
+    renderCart();
 }
 
 // ===============================
 // CHECKOUT
 // ===============================
 function checkOutAndUpdateQuantity() {
-    cart = [];
-    updateCart();
+    cart.length = 0; // ✅ FIXED
+
+    saveToLocalStorage();
+    renderCart();
 }
 
 // ===============================
 // NAVIGATION
 // ===============================
-document.querySelector('.header-btn').addEventListener('click', () => {
+document.querySelector('.header-btn')?.addEventListener('click', () => {
     window.location.href = "index.html#productsContainer";
 });
 
