@@ -91,6 +91,20 @@ function updateCartCount() {
     if (cartCountSpan)
         cartCountSpan.textContent = cartItemCount;
 }
+const categorySelect = document.getElementById("category");
+
+if (categorySelect) {
+    categorySelect.addEventListener("change", () => {
+        const selected = categorySelect.value;
+
+        if (selected === "All") {
+            renderProduct(products);
+        } else {
+            const filtered = products.filter(p => p.category === selected);
+            renderProduct(filtered);
+        }
+    });
+}
 
 // ===============================
 // SEARCH
