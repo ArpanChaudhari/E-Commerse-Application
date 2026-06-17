@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/Images/logo-ShopEase.png" alt="ShopEase Logo" width="200"/>
+  <img src="public/Images/logo-footer-ShopEase" alt="ShopEase Logo" width="200"/>
 </div>
 
 # ShopEase - E-Commerce Application
