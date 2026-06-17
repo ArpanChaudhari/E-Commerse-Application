@@ -4,7 +4,15 @@
 
 # ShopEase - E-Commerce Application
 
-![Project Banner](public/Images/Hero-image.jpeg)
+### 📸 App Screenshots
+
+| Home Page | Admin Dashboard |
+|---|---|
+| ![Home](public/Images/home_screenshot.png) | ![Admin](public/Images/admin_screenshot.png) |
+
+| Login Page |
+|---|
+| ![Login](public/Images/login_screenshot.png) |
 
 A full-stack E-Commerce web application built with a modern backend and responsive frontend. It allows users to browse products, add them to their cart, securely check out using Razorpay, and manage their profiles. It also includes an admin dashboard to manage inventory and products.
 
