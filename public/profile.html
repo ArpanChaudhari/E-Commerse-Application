@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile - ShopEase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="CSS/toast.css" />
+    <link rel="stylesheet" href="CSS/profile.css" />
+    <script src="Js/toast.js"></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            <img src="Images/logo-ShopEase.png" class="logo-ShopEase" alt="ShopEase Logo">
+        </div>
+
+        <div class="header-actions">
+            <button class="header-btn" id="homeBtn">
+                <i class="fa-solid fa-house"></i> Home
+            </button>
+            <button id="logoutBtn" class="header-btn" style="background-color: #dc2626;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <!-- PROFILE PAGE -->
+    <main class="profile-page container">
+        <div class="profile-container" id="profileRoot">
+            <div class="loading" style="text-align: center; padding: 40px; color: #6b7280;">Loading profile details...</div>
+        </div>
+    </main>
+
+    <!-- JS -->
+    <script type="module" src="Js/profile.js"></script>
+
+</body>
+</html>

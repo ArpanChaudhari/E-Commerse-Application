@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini E-Commerce</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="CSS/toast.css" />
+    <script src="Js/toast.js"></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="logo">
+            <img src="Images/logo-ShopEase.png" alt="ShopEase Logo" class="logo-ShopEase" />
+        </div>
+
+
+
+
+        <div class="header-actions">
+            <div id="authContainer">
+                <button id="loginBtn" class="login-signup-btn btn">Login</button>
+            </div>
+
+            <button id="opencartBtn" class="header-btn btn-cart" type="button">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Cart</span>
+                <span id="cartCountBadge" class="header-badge"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+
+                <!-- Left Content -->
+                <div class="hero-content">
+
+                    <!-- Hero Badge -->
+                    <div class="hero-badge">
+                        <i data-lucide="sparkles"></i>
+                        <span>New Arrivals Every Week</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Shop Smart,
+                        <span>Live Easy</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Discover amazing products at unbeatable prices.
+                        Your one-stop destination for everything you need.
+                    </p>
+
+                    <!-- Hero Buttons -->
+                    <div class="hero-buttons">
+                        <a href="#productsContainer" class="hero-btn hero-btn-primary">
+                            <i data-lucide="shopping-bag"></i>
+                            Start Shopping
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+
+                        <a href="#productsContainer" class="hero-btn hero-btn-outline">
+                            Browse Collections
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>10K+</h3>
+                            <p>Products</p>
+                        </div>
+                        <div class="stat">
+                            <h3>50K+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>4.9★</h3>
+                            <p>Quantity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Image -->
+                <div class="hero-image">
+                    <div class="blob purple"></div>
+                    <div class="blob blue"></div>
+
+                    <img src="Images/Hero-image.jpeg" alt="Shopping Experience" />
+
+                    <div class="floating-card">
+                        <div class="icon">
+                            <i data-lucide="shopping-bag"></i>
+                        </div>
+                        <div>
+                            <h4>Free Shipping</h4>
+                            <p>On orders over ₹50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= FEATURES SECTION ================= -->
+    <section class="features">
+        <div class="features-container">
+
+            <!-- Section Header -->
+            <div class="features-header">
+                <h2>Why Choose ShopEase?</h2>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+
+                <!-- Feature Card -->
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon green">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon purple">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon orange">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon pink">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon yellow">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <h3>Best Prices</h3>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= PRODUCTS ================= -->
+    <section class="products">
+        <div class="products-container" id="productsContainer">
+            <div class="products-header">
+                <h2>Featured Products</h2>
+                <p>Discover our handpicked selection of premium products</p>
+            </div>
+            <div class="filters-container">
+                <div class="category-filters">
+                    <label for="category">Select Category</label>
+                    <select id="category" name="category">
+                        <option value="All">All</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Stationary">Stationary</option>
+                        <option value="Home">Home</option>
+                        <option value="Sports">Sports</option>
+                    </select>
+                </div>
+
+                <div class="search-wrapper">
+                    <input id="searchInput" type="search" placeholder="Search products">
+                    <ul id="searchSuggestions" class="suggestions hidden"></ul>
+                </div>
+
+
+                <div class="products-grid"></div>
+                <template id="productCard">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="" alt="">
+                            <span class="product-tag"></span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"></h3>
+                            <div class="product-meta">
+                                <span class="price"></span>
+                                <span class="stock"></span>
+                            </div>
+                            <button class="add-btn"><i class="fa-solid fa-cart-shopping"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- TOP GRID -->
+            <div class="footer-top">
+
+                <!-- BRAND -->
+                <div class="footer-brand">
+                    <div class="brand-title">
+                        <img src="Images/logo-footer-ShopEase.png" alt="ShopEase Logo" class="logo-footer-ShopEase" />
+                    </div>
+
+                    <p class="brand-desc">
+                        Your trusted online shopping destination. Discover quality products
+                        at unbeatable prices with exceptional customer service.
+                    </p>
+
+                    <ul class="contact-list">
+                        <li><i data-lucide="phone"></i> +1 (555) 123-4567</li>
+                        <li><i data-lucide="mail"></i> support@shopease.com</li>
+                        <li><i data-lucide="map-pin"></i> 123 Commerce St, New York, NY 10001</li>
+                    </ul>
+                </div>
+
+                <!-- LINKS -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Shop All</a>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Best Sellers</a>
+                    <a href="#">Sale</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Customer Service</h4>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Shipping Info</a>
+                    <a href="#">Returns</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Track Order</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Accessibility</a>
+                </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="footer-divider"></div>
+
+            <!-- NEWSLETTER -->
+            <!-- <div class="newsletter">
+                <h4>Subscribe to Our Newsletter</h4>
+                <p>Get the latest updates on new products and upcoming sales</p>
+
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" />
+                    <button>Subscribe</button>
+                </div>
+            </div> -->
+
+            <!-- BOTTOM -->
+            <div class="footer-bottom">
+                <span>© 2026 ShopEase. All rights reserved.</span>
+
+                <div class="social">
+                    <span>Follow us:</span>
+                    <div class="social-icons">
+                        <i data-lucide="facebook"></i>
+                        <i data-lucide="twitter"></i>
+                        <i data-lucide="instagram"></i>
+                        <i data-lucide="youtube"></i>
+                    </div>
+                </div>
+
+                <div class="payments">
+                    <span>We accept:</span>
+                    <div class="payment-tags">
+                        <span>VISA</span>
+                        <span>MC</span>
+                        <span>AMEX</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <script type="module" src="Js/product.js"></script>
+
+</body>
+
+</html>
