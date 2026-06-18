@@ -4,6 +4,9 @@
 
 # ShopEase - E-Commerce Application
 
+**🌐 Live Demo:** [shopease-e-commerse-application.onrender.com](https://shopease-e-commerse-application.onrender.com)
+
+
 ### 📸 App Screenshots
 
 | Home Page | Admin Dashboard |
