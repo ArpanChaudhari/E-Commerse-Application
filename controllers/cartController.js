@@ -3,10 +3,19 @@ const Order = require("../model/order_Model");
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET
-});
+let razorpay;
+try {
+    if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
+        razorpay = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_KEY_SECRET
+        });
+    } else {
+        console.log("Razorpay Warning: Keys missing");
+    }
+} catch (error) {
+    console.log("Razorpay Error:", error.message);
+}
 
 // ================= ADD TO CART =================
 const addToCart = async (req, res) => {
